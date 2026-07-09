@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="Sandbox/Sandbox.vcxproj" Id="63a0b86b-8fe6-4154-9321-c6832d3a6d63" />
+  <Project Path="Impaction/Impaction.vcxproj" Id="d87401cb-4798-445f-bc8f-3365f715bd87" />
+</Solution>
