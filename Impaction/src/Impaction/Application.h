@@ -1,7 +1,8 @@
 #pragma once
 #include "Core.h"
 
-namespace impct {
+namespace impct 
+{
 	class IMPCT_API Application
 	{
 	public:

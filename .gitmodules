@@ -1,0 +1,3 @@
+[submodule "Impaction/vendor/spdlog"]
+	path = Impaction/vendor/spdlog
+	url = https://github.com/gabime/spdlog
