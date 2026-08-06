@@ -9,33 +9,40 @@ configurations {
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+
+IncludeDir = {}
+IncludeDir["GLFW"] = "Impaction/vendor/GLFW/include"
+
+include "Impaction/vendor/GLFW"
+
+
 require "vstudio"
 
-local vcxproj = premake.vstudio.vc2010
+	local vcxproj = premake.vstudio.vc2010
 
-local function useBuiltinVcpkgApplocalDeps()
-	premake.w('  <PropertyGroup>')
-	premake.w('    <VcpkgXUseBuiltInApplocalDeps>true</VcpkgXUseBuiltInApplocalDeps>')
-	premake.w('  </PropertyGroup>')
-end
-
-local function copyImpactionRuntimeToSandbox(prj)
-	if prj.name ~= "Impaction" then
-		return
+	local function useBuiltinVcpkgApplocalDeps()
+		premake.w('  <PropertyGroup>')
+		premake.w('    <VcpkgXUseBuiltInApplocalDeps>true</VcpkgXUseBuiltInApplocalDeps>')
+		premake.w('  </PropertyGroup>')
 	end
 
-	premake.w('  <Target Name="CopyImpactionRuntimeToSandbox" AfterTargets="Build">')
-	premake.w('    <MakeDir Directories="$(OutDir)..\\Sandbox\\" />')
-	premake.w('    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(OutDir)..\\Sandbox\\" SkipUnchangedFiles="true" />')
-	premake.w('  </Target>')
-end
+	local function copyImpactionRuntimeToSandbox(prj)
+		if prj.name ~= "Impaction" then
+			return
+		end
 
-premake.override(vcxproj.elements, "project", function(base, prj)
-	local calls = base(prj)
-	table.insertafter(calls, vcxproj.userMacros, useBuiltinVcpkgApplocalDeps)
-	table.insert(calls, copyImpactionRuntimeToSandbox)
-	return calls
-end)
+		premake.w('  <Target Name="CopyImpactionRuntimeToSandbox" AfterTargets="Build">')
+		premake.w('    <MakeDir Directories="$(OutDir)..\\Sandbox\\" />')
+		premake.w('    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(OutDir)..\\Sandbox\\" SkipUnchangedFiles="true" />')
+		premake.w('  </Target>')
+	end
+
+	premake.override(vcxproj.elements, "project", function(base, prj)
+		local calls = base(prj)
+		table.insertafter(calls, vcxproj.userMacros, useBuiltinVcpkgApplocalDeps)
+		table.insert(calls, copyImpactionRuntimeToSandbox)
+		return calls
+	end)
 
 project "Impaction"
 	location "Impaction"
@@ -45,19 +52,28 @@ project "Impaction"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "impct_pch.h"
+	pchsource "Impaction/src/impct_pch.cpp"
+
 	files {
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 	}
 
 	includedirs {
+		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"Impaction/src"
+		"%{IncludeDir.GLFW}",
+	}
+
+	links {
+		"GLFW",
+		"OpenGL32.lib"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		buildoptions {
@@ -101,7 +117,7 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		buildoptions {

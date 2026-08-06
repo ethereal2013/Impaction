@@ -1,6 +1,6 @@
 #pragma once
 
-#include <sstream>
+#include <impct_pch.h>
 #include "Event.h"
 
 namespace impct

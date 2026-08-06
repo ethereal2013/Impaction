@@ -7,6 +7,12 @@
     <Filter Include="Impaction\Events">
       <UniqueIdentifier>{2DC0A193-19B9-C0E5-42EB-A56A2E43A0F1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Impaction\Platform">
+      <UniqueIdentifier>{DD86301F-C96A-F174-32CB-EBC71ECEDBF6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Impaction\Platform\Windows">
+      <UniqueIdentifier>{17BED187-03CE-7D58-6C87-E27658B66CF1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Impaction.h" />
@@ -34,6 +40,13 @@
     <ClInclude Include="src\Impaction\Log.h">
       <Filter>Impaction</Filter>
     </ClInclude>
+    <ClInclude Include="src\Impaction\Platform\Windows\WindowsWindow.h">
+      <Filter>Impaction\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Window.h">
+      <Filter>Impaction</Filter>
+    </ClInclude>
+    <ClInclude Include="src\impct_pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Impaction\Application.cpp">
@@ -42,5 +55,9 @@
     <ClCompile Include="src\Impaction\Log.cpp">
       <Filter>Impaction</Filter>
     </ClCompile>
+    <ClCompile Include="src\Impaction\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Impaction\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\impct_pch.cpp" />
   </ItemGroup>
 </Project>

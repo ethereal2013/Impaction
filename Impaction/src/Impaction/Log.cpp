@@ -1,3 +1,5 @@
+#include <impct_pch.h>
+
 #include "Log.h"
 
 namespace impct
