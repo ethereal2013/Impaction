@@ -5,7 +5,11 @@
     <BuildType Name="Release" />
     <Platform Name="x64" />
   </Configurations>
+  <Project Path="Impaction\vendor\Glad\Glad.vcxproj" Id="BDD6857C-A90D-870D-52FA-6C103E10030F">
+  </Project>
   <Project Path="Impaction\vendor\GLFW\GLFW.vcxproj" Id="154B857C-0182-860D-AA6E-6C109684020F">
+  </Project>
+  <Project Path="Impaction\vendor\imgui\ImGui.vcxproj" Id="C0FF640D-2C14-8DBE-F595-301E616989EF">
   </Project>
   <Project Path="Impaction\Impaction.vcxproj" Id="6944A058-D5AE-54CF-1EED-05758A963224">
   </Project>

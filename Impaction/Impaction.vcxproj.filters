@@ -7,8 +7,14 @@
     <Filter Include="Impaction\Events">
       <UniqueIdentifier>{2DC0A193-19B9-C0E5-42EB-A56A2E43A0F1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Impaction\ImGui">
+      <UniqueIdentifier>{53A46ECE-BF2F-DC92-C840-5F87344B3893}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Impaction\Platform">
       <UniqueIdentifier>{DD86301F-C96A-F174-32CB-EBC71ECEDBF6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Impaction\Platform\OpenGL">
+      <UniqueIdentifier>{7135CF75-DDF7-0200-26A8-918C92A9DBDD}</UniqueIdentifier>
     </Filter>
     <Filter Include="Impaction\Platform\Windows">
       <UniqueIdentifier>{17BED187-03CE-7D58-6C87-E27658B66CF1}</UniqueIdentifier>
@@ -37,8 +43,20 @@
     <ClInclude Include="src\Impaction\Events\MouseEvent.h">
       <Filter>Impaction\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Impaction\ImGui\ImGuiLayer.h">
+      <Filter>Impaction\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Layer.h">
+      <Filter>Impaction</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\LayerStack.h">
+      <Filter>Impaction</Filter>
+    </ClInclude>
     <ClInclude Include="src\Impaction\Log.h">
       <Filter>Impaction</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Impaction\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Impaction\Platform\Windows\WindowsWindow.h">
       <Filter>Impaction\Platform\Windows</Filter>
@@ -52,12 +70,25 @@
     <ClCompile Include="src\Impaction\Application.cpp">
       <Filter>Impaction</Filter>
     </ClCompile>
+    <ClCompile Include="src\Impaction\ImGui\ImGuiLayer.cpp">
+      <Filter>Impaction\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Impaction\Layer.cpp">
+      <Filter>Impaction</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Impaction\LayerStack.cpp">
+      <Filter>Impaction</Filter>
+    </ClCompile>
     <ClCompile Include="src\Impaction\Log.cpp">
       <Filter>Impaction</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Impaction\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Impaction\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Impaction\Platform\Windows\WindowsWindow.cpp">
       <Filter>Impaction\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\impct_pch.cpp" />
+    <ClCompile Include="src\Impaction\ImGui\KeyCode.h" />
   </ItemGroup>
 </Project>

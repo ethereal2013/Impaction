@@ -1,11 +1,8 @@
 #pragma once
 
 #include <impct_pch.h>
-#include "Impaction/Core.h"
 #include "Impaction/Events/Event.h"
-#include "Impaction/Events/KeyEvent.h"
-#include "Impaction/Events/MouseEvent.h"
-#include "Impaction/Events/ApplicationEvent.h"
+#include "Impaction/Core.h"
 
 namespace impct
 {

@@ -53,9 +53,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-    <PropertyGroup>
-      <VcpkgXUseBuiltInApplocalDeps>true</VcpkgXUseBuiltInApplocalDeps>
-    </PropertyGroup>
+  <PropertyGroup>
+    <VcpkgXUseBuiltInApplocalDeps>true</VcpkgXUseBuiltInApplocalDeps>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\bin\Debug-windows-x86_64\Impaction\</OutDir>
@@ -82,12 +82,12 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>impct_pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>IMPCT_PLATFORM_WINDOWS;IMPCT_BUILD_DLL;IMPCT_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>IMPCT_PLATFORM_WINDOWS;IMPCT_BUILD_DLL;GLFW_INCLUDE_NONE;IMPCT_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -105,15 +105,15 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>impct_pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>IMPCT_PLATFORM_WINDOWS;IMPCT_BUILD_DLL;IMPCT_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>IMPCT_PLATFORM_WINDOWS;IMPCT_BUILD_DLL;GLFW_INCLUDE_NONE;IMPCT_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -132,15 +132,15 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>impct_pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>IMPCT_PLATFORM_WINDOWS;IMPCT_BUILD_DLL;IMPCT_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>IMPCT_PLATFORM_WINDOWS;IMPCT_BUILD_DLL;GLFW_INCLUDE_NONE;IMPCT_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -163,29 +163,44 @@
     <ClInclude Include="src\Impaction\Events\Event.h" />
     <ClInclude Include="src\Impaction\Events\KeyEvent.h" />
     <ClInclude Include="src\Impaction\Events\MouseEvent.h" />
+    <ClInclude Include="src\Impaction\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Impaction\Layer.h" />
+    <ClInclude Include="src\Impaction\LayerStack.h" />
     <ClInclude Include="src\Impaction\Log.h" />
+    <ClInclude Include="src\Impaction\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Impaction\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Impaction\Window.h" />
     <ClInclude Include="src\impct_pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Impaction\Application.cpp" />
+    <ClCompile Include="src\Impaction\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Impaction\ImGui\KeyCode.h" />
+    <ClCompile Include="src\Impaction\Layer.cpp" />
+    <ClCompile Include="src\Impaction\LayerStack.cpp" />
     <ClCompile Include="src\Impaction\Log.cpp" />
+    <ClCompile Include="src\Impaction\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Impaction\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\impct_pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="vendor\Glad\Glad.vcxproj">
+      <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
+    </ProjectReference>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
       <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-    <Target Name="CopyImpactionRuntimeToSandbox" AfterTargets="Build">
-      <MakeDir Directories="$(OutDir)..\Sandbox\" />
-      <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(OutDir)..\Sandbox\" SkipUnchangedFiles="true" />
-    </Target>
+  <Target Name="CopyImpactionRuntimeToSandbox" AfterTargets="Build">
+    <MakeDir Directories="$(OutDir)..\Sandbox\" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(OutDir)..\Sandbox\" SkipUnchangedFiles="true" />
+  </Target>
 </Project>
