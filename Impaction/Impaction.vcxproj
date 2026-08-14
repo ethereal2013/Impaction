@@ -164,10 +164,15 @@
     <ClInclude Include="src\Impaction\Events\KeyEvent.h" />
     <ClInclude Include="src\Impaction\Events\MouseEvent.h" />
     <ClInclude Include="src\Impaction\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Impaction\ImGui\CodeConversion.h" />
+    <ClInclude Include="src\Impaction\Input.h" />
+    <ClInclude Include="src\Impaction\KeyCodes.h" />
     <ClInclude Include="src\Impaction\Layer.h" />
     <ClInclude Include="src\Impaction\LayerStack.h" />
     <ClInclude Include="src\Impaction\Log.h" />
+    <ClInclude Include="src\Impaction\MouseButtonCodes.h" />
     <ClInclude Include="src\Impaction\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Impaction\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Impaction\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Impaction\Window.h" />
     <ClInclude Include="src\impct_pch.h" />
@@ -175,11 +180,11 @@
   <ItemGroup>
     <ClCompile Include="src\Impaction\Application.cpp" />
     <ClCompile Include="src\Impaction\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Impaction\ImGui\KeyCode.h" />
     <ClCompile Include="src\Impaction\Layer.cpp" />
     <ClCompile Include="src\Impaction\LayerStack.cpp" />
     <ClCompile Include="src\Impaction\Log.cpp" />
     <ClCompile Include="src\Impaction\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Impaction\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Impaction\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\impct_pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

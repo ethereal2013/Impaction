@@ -6,7 +6,11 @@
 #include "Impaction/Platform/OpenGL/ImGuiOpenGLRenderer.h"
 
 #include "Impaction/Application.h"
-#include "KeyCode.h"
+#include "CodeConversion.h"
+
+//TEMPORARY
+#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 namespace impct
 {

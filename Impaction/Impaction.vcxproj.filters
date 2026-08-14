@@ -46,6 +46,9 @@
     <ClInclude Include="src\Impaction\ImGui\ImGuiLayer.h">
       <Filter>Impaction\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Impaction\ImGui\CodeConversion.h">
+      <Filter>Impaction\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Impaction\Layer.h">
       <Filter>Impaction</Filter>
     </ClInclude>
@@ -65,6 +68,10 @@
       <Filter>Impaction</Filter>
     </ClInclude>
     <ClInclude Include="src\impct_pch.h" />
+    <ClInclude Include="src\Impaction\Input.h" />
+    <ClInclude Include="src\Impaction\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Impaction\KeyCodes.h" />
+    <ClInclude Include="src\Impaction\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Impaction\Application.cpp">
@@ -89,6 +96,6 @@
       <Filter>Impaction\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\impct_pch.cpp" />
-    <ClCompile Include="src\Impaction\ImGui\KeyCode.h" />
+    <ClCompile Include="src\Impaction\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

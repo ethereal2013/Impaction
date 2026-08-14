@@ -9,7 +9,10 @@
 
 #else
 	#error Impaction only supports Windows
+#endif
 
+#ifdef IMPCT_DEBUG
+#define IMPCT_ENABLE_ASSERTS
 #endif
 
 #ifdef IMPCT_ENABLE_ASSERTS

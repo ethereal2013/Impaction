@@ -5,8 +5,18 @@ class ExampleLayer : public impct::Layer
 public:
 	ExampleLayer() :Layer("Example") { }
 
-	void OnUpdate() override { IMPCT_INFO("ExampleLayer::Update"); }
-	void OnEvent(impct::Event& event) override { IMPCT_TRACE("{0}", event); }
+	void OnUpdate() override
+	{
+		IMPCT_INFO("ExampleLayer::Update");
+		
+		if (impct::Input::IsKeyPressed(IMPCT_KEY_TAB)) 
+			IMPCT_INFO("Tab Key is pressed");
+	}
+
+	void OnEvent(impct::Event& event) override
+	{
+		IMPCT_TRACE("{0}", event);
+	}
 };
 
 class Sandbox : public impct::Application
@@ -19,6 +29,7 @@ public:
 	~Sandbox() override {}
 };
 
-impct::Application* impct::CreateApplication() {
+impct::Application* impct::CreateApplication()
+{
 	return new Sandbox();
 }

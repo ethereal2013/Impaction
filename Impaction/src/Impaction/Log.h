@@ -31,7 +31,7 @@ namespace impct
 #define IMPCT_CORE_CRITICAL(...) ::impct::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 
-//Client Log  Macros
+//Client Log Macros
 #define IMPCT_TRACE(...)         ::impct::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define IMPCT_INFO(...)          ::impct::Log::GetClientLogger()->info(__VA_ARGS__)
 #define IMPCT_WARN(...)          ::impct::Log::GetClientLogger()->warn(__VA_ARGS__)
