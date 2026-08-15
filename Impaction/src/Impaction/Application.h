@@ -2,9 +2,13 @@
 
 #include "Core.h"
 #include "Window.h"
+
 #include "Impaction/LayerStack.h"
+
 #include "Impaction/Events/Event.h"
 #include "Impaction/Events/ApplicationEvent.h"
+
+#include "Impaction/ImGui/ImGuiLayer.h"
 
 
 namespace impct 
@@ -29,8 +33,8 @@ namespace impct
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
-
 		LayerStack m_LayerStack;
 
 	private:
@@ -39,5 +43,4 @@ namespace impct
 
 	//To be definded in Client.
 	Application* CreateApplication();
-
 }

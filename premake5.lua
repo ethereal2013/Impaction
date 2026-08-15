@@ -14,11 +14,11 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Impaction/vendor/GLFW/include"
 IncludeDir["Glad"] = "Impaction/vendor/GLAD/include"
 IncludeDir["ImGui"] = "Impaction/vendor/imgui"
+IncludeDir["glm"] = "Impaction/vendor/glm"
 
 include "Impaction/vendor/GLFW"
 include "Impaction/vendor/Glad"
 include "Impaction/vendor/imgui"
-
 
 require "vstudio"
 
@@ -62,7 +62,9 @@ project "Impaction"
 
 	files {
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs {
@@ -70,7 +72,8 @@ project "Impaction"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links {
@@ -127,7 +130,8 @@ project "Sandbox"
 
 	includedirs {
 		"Impaction/vendor/spdlog/include",
-		"Impaction/src"
+		"Impaction/src",
+		"%{IncludeDir.glm}"
 	}
 
 	filter "system:windows"

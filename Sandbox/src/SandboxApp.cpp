@@ -8,9 +8,6 @@ public:
 	void OnUpdate() override
 	{
 		IMPCT_INFO("ExampleLayer::Update");
-		
-		if (impct::Input::IsKeyPressed(IMPCT_KEY_TAB)) 
-			IMPCT_INFO("Tab Key is pressed");
 	}
 
 	void OnEvent(impct::Event& event) override
@@ -22,10 +19,11 @@ public:
 class Sandbox : public impct::Application
 {
 public:
-	Sandbox() { 
+	Sandbox()
+	{ 
 		PushLayer(new ExampleLayer()); 
-		PushOverlay(new impct::ImGuiLayer());
 	}
+
 	~Sandbox() override {}
 };
 
