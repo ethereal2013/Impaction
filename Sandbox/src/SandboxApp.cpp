@@ -1,4 +1,5 @@
 #include <Impaction.h>
+#include <imgui/imgui.h>
 
 class ExampleLayer : public impct::Layer
 {
@@ -13,6 +14,13 @@ public:
 	void OnEvent(impct::Event& event) override
 	{
 		IMPCT_TRACE("{0}", event);
+	}
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello, World!");
+		ImGui::End();
 	}
 };
 

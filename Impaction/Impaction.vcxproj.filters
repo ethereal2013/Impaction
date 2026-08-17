@@ -16,9 +16,6 @@
     <Filter Include="src\Impaction\Platform">
       <UniqueIdentifier>{94EA0716-80E4-3068-6951-C77855EA96D4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Impaction\Platform\OpenGL">
-      <UniqueIdentifier>{486528CD-B47D-0FF7-7D2A-9F90E901A490}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Impaction\Platform\Windows">
       <UniqueIdentifier>{CEE850CA-BA0E-1B31-A354-A0FC8F1940FD}</UniqueIdentifier>
     </Filter>
@@ -69,9 +66,6 @@
     <ClInclude Include="src\Impaction\Events\MouseEvent.h">
       <Filter>src\Impaction\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Impaction\ImGui\CodeConversion.h">
-      <Filter>src\Impaction\ImGui</Filter>
-    </ClInclude>
     <ClInclude Include="src\Impaction\ImGui\ImGuiLayer.h">
       <Filter>src\Impaction\ImGui</Filter>
     </ClInclude>
@@ -92,9 +86,6 @@
     </ClInclude>
     <ClInclude Include="src\Impaction\MouseButtonCodes.h">
       <Filter>src\Impaction</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Impaction\Platform\OpenGL\ImGuiOpenGLRenderer.h">
-      <Filter>src\Impaction\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Impaction\Platform\Windows\WindowsInput.h">
       <Filter>src\Impaction\Platform\Windows</Filter>
@@ -1384,9 +1375,6 @@
     </ClCompile>
     <ClCompile Include="src\Impaction\Log.cpp">
       <Filter>src\Impaction</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Impaction\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
-      <Filter>src\Impaction\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Impaction\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Impaction\Platform\Windows</Filter>

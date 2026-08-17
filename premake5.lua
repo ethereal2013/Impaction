@@ -30,29 +30,27 @@ require "vstudio"
 		premake.w('  </PropertyGroup>')
 	end
 
-	local function copyImpactionRuntimeToSandbox(prj)
-		if prj.name ~= "Impaction" then
-			return
-		end
-
-		premake.w('  <Target Name="CopyImpactionRuntimeToSandbox" AfterTargets="Build">')
-		premake.w('    <MakeDir Directories="$(OutDir)..\\Sandbox\\" />')
-		premake.w('    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(OutDir)..\\Sandbox\\" SkipUnchangedFiles="true" />')
-		premake.w('  </Target>')
-	end
-
-	premake.override(vcxproj.elements, "project", function(base, prj)
+		premake.override(vcxproj.elements, "project", function(base, prj)
 		local calls = base(prj)
 		table.insertafter(calls, vcxproj.userMacros, useBuiltinVcpkgApplocalDeps)
-		table.insert(calls, copyImpactionRuntimeToSandbox)
 		return calls
 	end)
 
+	local ImpctKind = "StaticLib"
+
 project "Impaction"
 	location "Impaction"
-	kind "SharedLib"
+	kind(ImpctKind)
 	language "C++"
-	staticruntime "Off"
+	cppdialect "C++17"
+	staticruntime "On"
+
+	if ImpctKind == "SharedLib" then
+		defines {
+			"IMPCT_DYNAMIC_LINK",
+			"IMPCT_BUILD_DLL"
+		}
+	end
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -84,9 +82,11 @@ project "Impaction"
 		"OpenGL32.lib"
 	}
 
+	defines {
+		"_CRT_SECURE_NO_WARNINGS"
+	}
+
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "Off"
 		systemversion "latest"
 
 		buildoptions {
@@ -95,30 +95,28 @@ project "Impaction"
 
 		defines {
 			"IMPCT_PLATFORM_WINDOWS",
-			"IMPCT_BUILD_DLL",
-			"GLFW_INCLUDE_NONE"
+			"GLFW_INCLUDE_NONE",
+			"_CRT_SECURE_NO_WARNINGS"
 		}
 
 	filter "configurations:Debug"
 		defines "IMPCT_DEBUG"
-		buildoptions "/MDd"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "IMPCT_RELEASE"
-		buildoptions "/MD"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "IMPCT_DIST"
-		buildoptions "/MD"
-		optimize "On"
+		optimize "on"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
-	staticruntime "Off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -131,11 +129,11 @@ project "Sandbox"
 	includedirs {
 		"Impaction/vendor/spdlog/include",
 		"Impaction/src",
+		"Impaction/vendor",
 		"%{IncludeDir.glm}"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		buildoptions {
@@ -147,20 +145,20 @@ project "Sandbox"
 		}
 
 		links {
-			"Impaction"
+        "Impaction"
 		}
 
 	filter "configurations:Debug"
 		defines "IMPCT_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "IMPCT_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "IMPCT_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"

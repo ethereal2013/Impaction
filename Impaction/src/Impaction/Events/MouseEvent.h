@@ -5,7 +5,7 @@
 
 namespace impct
 {
-	class IMPCT_API MouseMovedEvent : public Event
+	class MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(float x, float y) 
@@ -27,7 +27,7 @@ namespace impct
 		float m_MouseX, m_MouseY;
 	};
 
-	class IMPCT_API MouseScrolledEvent : public Event
+	class MouseScrolledEvent : public Event
 	{
 	public:
 		MouseScrolledEvent(float xOffset, float yOffset) 
@@ -49,7 +49,7 @@ namespace impct
 		float m_XOffset, m_YOffset;
 	};
 
-	class IMPCT_API MouseButtonEvent : public Event
+	class MouseButtonEvent : public Event
 	{
 	public:
 		inline int GetMouseButton() const { return m_MouseButton; }
@@ -60,7 +60,7 @@ namespace impct
 		int m_MouseButton;
 	};
 
-	class IMPCT_API MouseButtonPressedEvent : public MouseButtonEvent
+	class MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressedEvent(int button)
@@ -75,7 +75,7 @@ namespace impct
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class IMPCT_API MouseButtonReleasedEvent : public MouseButtonEvent
+	class MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(int button)

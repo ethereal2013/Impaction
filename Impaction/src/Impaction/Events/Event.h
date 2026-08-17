@@ -33,7 +33,7 @@ namespace impct
 
 
 	//Main Event Base Class
-	class IMPCT_API Event
+	class Event
 	{
 		friend class EventDispatcher;
 

@@ -14,7 +14,7 @@
 namespace impct 
 {
 
-	class IMPCT_API Application
+	class Application
 	{
 	public:
 		Application();

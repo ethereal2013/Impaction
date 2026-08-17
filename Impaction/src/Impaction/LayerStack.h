@@ -7,7 +7,7 @@
 
 namespace impct
 {
-	class IMPCT_API LayerStack
+	class LayerStack
 	{
 	public:
 		LayerStack();
