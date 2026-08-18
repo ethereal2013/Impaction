@@ -6,7 +6,7 @@
 #include "Impaction/Events/MouseEvent.h"
 #include "Impaction/Events/ApplicationEvent.h"
 
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace impct
 {
@@ -23,14 +23,16 @@ namespace impct
 	WindowsWindow::WindowsWindow(const WindowProps& props) { Init(props); }
 	WindowsWindow::~WindowsWindow() { Shutdown(); }
 
-	void WindowsWindow::Init(const WindowProps& props) {
+	void WindowsWindow::Init(const WindowProps& props)
+	{
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
 		IMPCT_CORE_INFO("Creating Window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
-		if (!s_GLFWInitialized) {
+		if (!s_GLFWInitialized)
+		{
 			// GLFW Terminate on system shutdown.
 			int success = glfwInit();
 			IMPCT_CORE_ASSERT(success, "Could not initialize GLFW");
@@ -43,10 +45,8 @@ namespace impct
 		m_Window = glfwCreateWindow(static_cast<int>(props.Width), static_cast<int>(props.Height),
 			m_Data.Title.c_str(), nullptr, nullptr);
 
-		glfwMakeContextCurrent(m_Window);
-
-		int status = gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
-		IMPCT_CORE_ASSERT(status, "Failed to initialize Glad!");
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
@@ -147,7 +147,12 @@ namespace impct
 	}
 
 	void WindowsWindow::Shutdown() { glfwDestroyWindow(m_Window); }
-	void WindowsWindow::OnUpdate() { glfwPollEvents(); glfwSwapBuffers(m_Window); }
+
+	void WindowsWindow::OnUpdate()
+	{
+		glfwPollEvents();
+		m_Context->SwapBuffers();
+	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{

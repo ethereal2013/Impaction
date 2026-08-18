@@ -27,11 +27,8 @@ namespace impct
 		ImGuiIO& io = ImGui::GetIO(); static_cast<void>(io);
 
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamePad;
 		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
-		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoTaskbarIcons;
-		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;
 
 		//Setup Dear ImGui Style
 		ImGui::StyleColorsDark();

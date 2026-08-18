@@ -3,6 +3,8 @@
 #include "Impaction/Window.h"
 #include <GLFW/glfw3.h>
 
+#include "Impaction/Renderer/GraphicsContext.h"
+
 namespace impct
 {
 	class WindowsWindow : public Window
@@ -29,6 +31,7 @@ namespace impct
 
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{

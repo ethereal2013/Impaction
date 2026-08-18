@@ -87,10 +87,10 @@
     <ClInclude Include="src\Impaction\MouseButtonCodes.h">
       <Filter>src\Impaction</Filter>
     </ClInclude>
-    <ClInclude Include="src\Impaction\Platform\Windows\WindowsInput.h">
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Impaction\Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\Impaction\Platform\Windows\WindowsWindow.h">
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Impaction\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Impaction\Window.h">
@@ -1356,6 +1356,8 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="src\Impaction\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Impaction\Application.cpp">
@@ -1376,14 +1378,15 @@
     <ClCompile Include="src\Impaction\Log.cpp">
       <Filter>src\Impaction</Filter>
     </ClCompile>
-    <ClCompile Include="src\Impaction\Platform\Windows\WindowsInput.cpp">
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Impaction\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Impaction\Platform\Windows\WindowsWindow.cpp">
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Impaction\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\impct_pch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
   </ItemGroup>
 </Project>

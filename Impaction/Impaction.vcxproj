@@ -53,9 +53,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-    <PropertyGroup>
-      <VcpkgXUseBuiltInApplocalDeps>true</VcpkgXUseBuiltInApplocalDeps>
-    </PropertyGroup>
+  <PropertyGroup>
+    <VcpkgXUseBuiltInApplocalDeps>true</VcpkgXUseBuiltInApplocalDeps>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)..\bin\Debug-windows-x86_64\Impaction\</OutDir>
     <IntDir>$(ProjectDir)..\bin-int\Debug-windows-x86_64\Impaction\</IntDir>
@@ -163,6 +163,7 @@
     <ClInclude Include="src\Impaction\Events\Event.h" />
     <ClInclude Include="src\Impaction\Events\KeyEvent.h" />
     <ClInclude Include="src\Impaction\Events\MouseEvent.h" />
+    <ClInclude Include="src\Impaction\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Impaction\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Impaction\Input.h" />
     <ClInclude Include="src\Impaction\KeyCodes.h" />
@@ -170,8 +171,9 @@
     <ClInclude Include="src\Impaction\LayerStack.h" />
     <ClInclude Include="src\Impaction\Log.h" />
     <ClInclude Include="src\Impaction\MouseButtonCodes.h" />
-    <ClInclude Include="src\Impaction\Platform\Windows\WindowsInput.h" />
-    <ClInclude Include="src\Impaction\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Impaction\Window.h" />
     <ClInclude Include="src\impct_pch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -601,8 +603,9 @@
     <ClCompile Include="src\Impaction\Layer.cpp" />
     <ClCompile Include="src\Impaction\LayerStack.cpp" />
     <ClCompile Include="src\Impaction\Log.cpp" />
-    <ClCompile Include="src\Impaction\Platform\Windows\WindowsInput.cpp" />
-    <ClCompile Include="src\Impaction\Platform\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\impct_pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
