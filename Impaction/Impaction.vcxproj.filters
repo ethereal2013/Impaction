@@ -13,11 +13,17 @@
     <Filter Include="src\Impaction\ImGui">
       <UniqueIdentifier>{6ACBD6E8-D62C-B4F6-5F9A-FAA8CBFAEAB5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Impaction\Platform">
-      <UniqueIdentifier>{94EA0716-80E4-3068-6951-C77855EA96D4}</UniqueIdentifier>
+    <Filter Include="src\Impaction\Renderer">
+      <UniqueIdentifier>{E6F1E4F0-D2EB-0D43-BB58-A453A7F173AF}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Impaction\Platform\Windows">
-      <UniqueIdentifier>{CEE850CA-BA0E-1B31-A354-A0FC8F1940FD}</UniqueIdentifier>
+    <Filter Include="src\Platform">
+      <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\Windows">
+      <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -87,14 +93,47 @@
     <ClInclude Include="src\Impaction\MouseButtonCodes.h">
       <Filter>src\Impaction</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>src\Impaction\Platform\Windows</Filter>
+    <ClInclude Include="src\Impaction\Renderer\Buffer.h">
+      <Filter>src\Impaction\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>src\Impaction\Platform\Windows</Filter>
+    <ClInclude Include="src\Impaction\Renderer\GraphicsContext.h">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Renderer\RenderCommand.h">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Renderer\Renderer.h">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Renderer\RendererAPI.h">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Renderer\Shader.h">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Renderer\VertexArray.h">
+      <Filter>src\Impaction\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Impaction\Window.h">
       <Filter>src\Impaction</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>src\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\impct_pch.h">
       <Filter>src</Filter>
@@ -1356,8 +1395,6 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Impaction\Renderer\GraphicsContext.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Impaction\Application.cpp">
@@ -1378,15 +1415,44 @@
     <ClCompile Include="src\Impaction\Log.cpp">
       <Filter>src\Impaction</Filter>
     </ClCompile>
+    <ClCompile Include="src\Impaction\Renderer\Buffer.cpp">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Impaction\Renderer\RenderCommand.cpp">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Impaction\Renderer\Renderer.cpp">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Impaction\Renderer\RendererAPI.cpp">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Impaction\Renderer\Shader.cpp">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Impaction\Renderer\VertexArray.cpp">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
-      <Filter>src\Impaction\Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>src\Impaction\Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\impct_pch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
   </ItemGroup>
 </Project>

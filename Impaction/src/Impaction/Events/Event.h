@@ -32,7 +32,7 @@ namespace impct
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
 
-	//Main Event Base Class
+	//Event Base Class
 	class Event
 	{
 		friend class EventDispatcher;
@@ -43,7 +43,8 @@ namespace impct
 		virtual int GetCategoryFlags() const = 0;
 		virtual std::string ToString() const { return GetName(); }
 
-		inline bool IsInCategory(EventCategory category) {
+		inline bool IsInCategory(EventCategory category)
+		{
 			return GetCategoryFlags() & category;
 		}
 
@@ -63,7 +64,7 @@ namespace impct
 		EventDispatcher(Event& event) : m_Event(event) { }
 
 		template<typename T>
-		bool Dispatch(EventFn<T> func) {
+		inline bool Dispatch(EventFn<T> func) {
 
 			if (m_Event.GetEventType() == T::GetStaticType()) {
 				m_Event.Handled = func(static_cast<T&>(m_Event));
@@ -78,7 +79,8 @@ namespace impct
 	};
 
 	//Display Events through output stream
-	inline std::ostream& operator<<(std::ostream& os, const Event& e) {
+	inline std::ostream& operator<<(std::ostream& os, const Event& e)
+	{
 		return os << e.ToString();
 	}
 }
@@ -88,7 +90,8 @@ template<>
 struct fmt::formatter<impct::Event> : fmt::formatter<std::string_view>
 {
 	template<typename FmtCtx>
-	auto format(const impct::Event& e, FmtCtx& ctx) const {
+	inline auto format(const impct::Event& e, FmtCtx& ctx) const
+	{
 		return fmt::formatter<std::string_view>::format(e.ToString(), ctx);
 	}
 };

@@ -16,7 +16,7 @@
 #endif
 
 #ifdef IMPCT_DEBUG
-#define IMPCT_ENABLE_ASSERTS
+	#define IMPCT_ENABLE_ASSERTS
 #endif
 
 #ifdef IMPCT_ENABLE_ASSERTS

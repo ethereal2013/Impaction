@@ -13,6 +13,7 @@
 #include <sstream>
 #include <unordered_map>
 #include <unordered_set>
+#include <initializer_list>
 
 #include "Impaction/Log.h"
 
