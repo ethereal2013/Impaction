@@ -62,7 +62,7 @@ namespace impct
 
 		inline uint32_t GetStride() const { return m_Stride; }
 
-		inline std::vector<BufferElement> GetElements() const { return m_Elements; }
+		inline const std::vector<BufferElement>& GetElements() const { return m_Elements; }
 
 		inline std::vector<BufferElement>::iterator begin() { return m_Elements.begin(); }
 		inline std::vector<BufferElement>::iterator end() { return m_Elements.end(); }
@@ -100,7 +100,7 @@ namespace impct
 		virtual const BufferLayout& GetLayout() const = 0;
 		virtual void SetLayout(const BufferLayout& layout) = 0;
 
-		static VertexBuffer* Create(float* vertices, uint32_t size);
+		[[nodiscard]] static VertexBuffer* Create(const float* vertices, const uint32_t size);
 	};
 
 	class IndexBuffer
@@ -113,7 +113,7 @@ namespace impct
 
 		virtual uint32_t GetCount() const = 0;
 
-		static IndexBuffer* Create(uint32_t* indices, uint32_t count);
+		[[nodiscard]] static IndexBuffer* Create(const uint32_t* indices, const uint32_t count);
 	};
 
 }

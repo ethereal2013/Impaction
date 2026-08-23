@@ -38,6 +38,6 @@ namespace impct
 
 		virtual void* GetNativeWindow() const = 0;
 
-		static Window* Create(const WindowProps& props = WindowProps());
+		[[nodiscard]] static Window* Create(const WindowProps& props = WindowProps());
 	};
 }

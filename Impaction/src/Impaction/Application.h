@@ -52,5 +52,5 @@ namespace impct
 	};
 
 	//To be definded in Client.
-	Application* CreateApplication();
+	[[nodiscard]] Application* CreateApplication();
 }
