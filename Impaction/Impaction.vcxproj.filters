@@ -99,6 +99,9 @@
     <ClInclude Include="src\Impaction\Renderer\GraphicsContext.h">
       <Filter>src\Impaction\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Impaction\Renderer\OrthographicCamera.h">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Impaction\Renderer\RenderCommand.h">
       <Filter>src\Impaction\Renderer</Filter>
     </ClInclude>
@@ -1395,7 +1398,6 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Impaction\Renderer\OrthographicCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Impaction\Application.cpp">
@@ -1417,6 +1419,9 @@
       <Filter>src\Impaction</Filter>
     </ClCompile>
     <ClCompile Include="src\Impaction\Renderer\Buffer.cpp">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Impaction\Renderer\OrthographicCamera.cpp">
       <Filter>src\Impaction\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Impaction\Renderer\RenderCommand.cpp">
@@ -1455,6 +1460,5 @@
     <ClCompile Include="src\impct_pch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Impaction\Renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>
