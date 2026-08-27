@@ -8,7 +8,7 @@ namespace impct
 	class OpenGLVertexBuffer : public VertexBuffer
 	{
 	public:
-		OpenGLVertexBuffer(const float* vertices, const uint32_t size);
+		OpenGLVertexBuffer(const float* vertices, uint32_t size);
 		virtual ~OpenGLVertexBuffer();
 
 		virtual void Bind() const override;
@@ -25,7 +25,7 @@ namespace impct
 	class OpenGLIndexBuffer : public IndexBuffer
 	{
 	public:
-		OpenGLIndexBuffer(const uint32_t* indices, const uint32_t count);
+		OpenGLIndexBuffer(const uint32_t* indices, uint32_t count);
 		virtual ~OpenGLIndexBuffer();
 
 		virtual void Bind() const;

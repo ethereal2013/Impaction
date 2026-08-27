@@ -10,7 +10,7 @@ namespace impct
 	//////////////////////////////////////// Vertex Buffer //////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////*/
 
-	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size)
+	OpenGLVertexBuffer::OpenGLVertexBuffer(const float* vertices, uint32_t size)
 	{
 		glCreateBuffers(1, &m_RendererID);
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
@@ -36,7 +36,7 @@ namespace impct
 	//////////////////////////////////////// Index Buffer //////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////*/
 
-	OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* indices, uint32_t count)
+	OpenGLIndexBuffer::OpenGLIndexBuffer(const uint32_t* indices, uint32_t count)
 		: m_Count(count)
 	{
 		glCreateBuffers(1, &m_RendererID);

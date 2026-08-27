@@ -2,6 +2,7 @@
 
 #include "Core.h"
 #include "Window.h"
+#include "Input.h"
 
 #include "Impaction/LayerStack.h"
 
@@ -9,10 +10,6 @@
 #include "Impaction/Events/ApplicationEvent.h"
 
 #include "Impaction/ImGui/ImGuiLayer.h"
-
-#include "Impaction/Renderer/Shader.h"
-#include "Impaction/Renderer/Buffer.h"
-#include "Impaction/Renderer/VertexArray.h"
 
 namespace impct 
 {
@@ -40,12 +37,6 @@ namespace impct
 
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<Shader> m_Shader;
-
-		std::shared_ptr<Shader> m_BlueShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
 		
 	private:
 		static Application* s_Instance;

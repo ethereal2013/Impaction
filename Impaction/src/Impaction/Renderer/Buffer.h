@@ -22,7 +22,7 @@ namespace impct
 		ShaderDataType Type;
 		bool Normalized;
 
-		BufferElement(ShaderDataType type, const std::string name, bool normalized = false)
+		BufferElement(ShaderDataType type, const std::string& name, bool normalized = false)
 			: Name(name), Type(type), Size(ShaderDataTypeSize(type)), Offset(0), Normalized(normalized)
 		{
 		}
@@ -100,7 +100,7 @@ namespace impct
 		virtual const BufferLayout& GetLayout() const = 0;
 		virtual void SetLayout(const BufferLayout& layout) = 0;
 
-		[[nodiscard]] static VertexBuffer* Create(const float* vertices, const uint32_t size);
+		[[nodiscard]] static VertexBuffer* Create(const float* vertices, uint32_t size);
 	};
 
 	class IndexBuffer
@@ -113,7 +113,7 @@ namespace impct
 
 		virtual uint32_t GetCount() const = 0;
 
-		[[nodiscard]] static IndexBuffer* Create(const uint32_t* indices, const uint32_t count);
+		[[nodiscard]] static IndexBuffer* Create(const uint32_t* indices, uint32_t count);
 	};
 
 }

@@ -66,7 +66,8 @@ namespace impct
 		template<typename T>
 		inline bool Dispatch(EventFn<T> func) {
 
-			if (m_Event.GetEventType() == T::GetStaticType()) {
+			if (m_Event.GetEventType() == T::GetStaticType())
+			{
 				m_Event.Handled = func(static_cast<T&>(m_Event));
 				return true;
 			}

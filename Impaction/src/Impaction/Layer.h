@@ -11,11 +11,11 @@ namespace impct
 		Layer(const std::string& name = "Layer");
 		virtual ~Layer();
 
-		virtual void OnAttach() { }
-		virtual void OnDetach() { }
-		virtual void OnUpdate() { }
-		virtual void OnImGuiRender() { }
-		virtual void OnEvent(Event& event) { }
+		inline virtual void OnAttach() { }
+		inline virtual void OnDetach() { }
+		inline virtual void OnUpdate() { }
+		inline virtual void OnImGuiRender() { }
+		inline virtual void OnEvent(Event& event) { }
 		
 		inline const std::string& GetName() const { return m_DebugName; }
 
