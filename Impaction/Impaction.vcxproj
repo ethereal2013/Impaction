@@ -53,9 +53,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-    <PropertyGroup>
-      <VcpkgXUseBuiltInApplocalDeps>true</VcpkgXUseBuiltInApplocalDeps>
-    </PropertyGroup>
+  <PropertyGroup>
+    <VcpkgXUseBuiltInApplocalDeps>true</VcpkgXUseBuiltInApplocalDeps>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)..\bin\Debug-windows-x86_64\Impaction\</OutDir>
     <IntDir>$(ProjectDir)..\bin-int\Debug-windows-x86_64\Impaction\</IntDir>
@@ -158,6 +158,7 @@
     <ClInclude Include="src\Impaction.h" />
     <ClInclude Include="src\Impaction\Application.h" />
     <ClInclude Include="src\Impaction\Core.h" />
+    <ClInclude Include="src\Impaction\Core\Timestep.h" />
     <ClInclude Include="src\Impaction\EntryPoint.h" />
     <ClInclude Include="src\Impaction\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Impaction\Events\Event.h" />

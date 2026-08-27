@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Impaction/Core.h"
+#include "Impaction/Core/Timestep.h"
 #include "Impaction/Events/Event.h"
 
 namespace impct
@@ -13,7 +14,7 @@ namespace impct
 
 		inline virtual void OnAttach() { }
 		inline virtual void OnDetach() { }
-		inline virtual void OnUpdate() { }
+		inline virtual void OnUpdate(Timestep timestep) { }
 		inline virtual void OnImGuiRender() { }
 		inline virtual void OnEvent(Event& event) { }
 		

@@ -1,6 +1,8 @@
 #include <impct_pch.h>
 #include "Application.h"
 
+#include <GLFW/glfw3.h>
+
 namespace impct
 {
 
@@ -13,6 +15,7 @@ namespace impct
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(IMPCT_BIND_EVENT_FN(Application::OnEvent));
+		m_Window->SetVSync(true);
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -47,10 +50,13 @@ namespace impct
 
 	void Application::Run() 
 	{
-
-		while (m_Running) 
+		while (m_Running)
 		{
-			for (Layer* layer : m_LayerStack) layer->OnUpdate();
+			float time = static_cast<float>(glfwGetTime()); // XPlatform::GetTime();
+			Timestep timestep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+
+			for (Layer* layer : m_LayerStack) layer->OnUpdate(timestep);
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack) layer->OnImGuiRender();

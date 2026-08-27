@@ -11,6 +11,7 @@
 
 /*---------------- Utils ----------------*/
 #include "Impaction/Input.h"
+#include "Impaction/Core/Timestep.h"
 #include "Impaction/KeyCodes.h"
 #include "Impaction/MouseButtonCodes.h"
 /*---------------------------------------*/
