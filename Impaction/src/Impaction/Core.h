@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #ifdef IMPCT_PLATFORM_WINDOWS
 	#if IMPCT_DYNAMIC_LINK
 		#ifdef IMPCT_BUILD_DLL
@@ -30,3 +32,20 @@
 #define BIT(x) (1 << x)
 
 #define IMPCT_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
+namespace impct
+{
+	// Smart pointers
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+
+	template<typename T>
+	using IPSharedPtr = Ref<T>;
+
+	template<typename T>
+	using IPUniquePtr = Scope<T>;
+
+}

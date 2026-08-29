@@ -92,7 +92,7 @@ namespace impct
 	class VertexBuffer
 	{
 	public:
-		virtual ~VertexBuffer() { }
+		inline virtual ~VertexBuffer() noexcept = default;
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
@@ -106,7 +106,7 @@ namespace impct
 	class IndexBuffer
 	{
 	public:
-		virtual ~IndexBuffer() { }
+		inline virtual ~IndexBuffer() noexcept = default;
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;

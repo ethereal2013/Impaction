@@ -7,6 +7,9 @@
     <Filter Include="src\Impaction">
       <UniqueIdentifier>{40A65A98-AC66-D6CE-75A1-1F4CE1201BAB}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Impaction\Core">
+      <UniqueIdentifier>{98B2B5B1-8496-7607-EDF6-705AD9F96089}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Impaction\Events">
       <UniqueIdentifier>{24CA0EFB-1059-98C4-B977-ACBFA5E5A86A}</UniqueIdentifier>
     </Filter>
@@ -56,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="src\Impaction\Core.h">
       <Filter>src\Impaction</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Core\Timestep.h">
+      <Filter>src\Impaction\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Impaction\EntryPoint.h">
       <Filter>src\Impaction</Filter>
@@ -127,6 +133,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
@@ -1446,6 +1455,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">

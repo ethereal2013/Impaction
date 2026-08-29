@@ -1,8 +1,6 @@
 #pragma once
 
 #include <string>
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 namespace impct
 {
@@ -10,17 +8,12 @@ namespace impct
 	class Shader
 	{
 	public:
-		Shader(const std::string& vertexSrc, const std::string& fragmentSrc);
-		~Shader();
+		inline virtual ~Shader() noexcept = default;
 
-		void Bind() const;
-		void Unbind() const;
+		virtual void Bind() const = 0;
+		virtual void Unbind() const = 0;
 
-		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
-
-	private:
-		//Initialize to stop warings in constructor.
-		uint32_t m_RendererID = 0;
+		[[nodiscard]] static Shader* Create(const std::string& vertexSrc, const std::string& fragmentSrc);
 	};
 
 }

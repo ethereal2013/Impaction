@@ -1,7 +1,9 @@
 #include <Impaction.h>
+#include "Platform/OpenGL/OpenGLShader.h"
 #include <imgui/imgui.h>
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public impct::Layer
 {
@@ -17,7 +19,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f,
 		};
 
-		std::shared_ptr<impct::VertexBuffer> vertexBuffer(impct::VertexBuffer::Create(vertices, sizeof(vertices)));
+		impct::Ref<impct::VertexBuffer> vertexBuffer(impct::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		impct::BufferLayout layout = {
 			{ impct::ShaderDataType::Float3, "a_Position" },
@@ -29,7 +31,7 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<impct::IndexBuffer> indexBuffer(impct::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		impct::Ref<impct::IndexBuffer> indexBuffer(impct::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 		m_SquareVA.reset(impct::VertexArray::Create());
@@ -41,14 +43,14 @@ public:
 			-0.5f,  0.5f,  0.0f,
 		};
 
-		std::shared_ptr<impct::VertexBuffer> squareVB(impct::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		impct::Ref<impct::VertexBuffer> squareVB(impct::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 
 		squareVB->SetLayout({ { impct::ShaderDataType::Float3, "a_Position" } });
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 
-		std::shared_ptr<impct::IndexBuffer> squareIB(impct::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		impct::Ref<impct::IndexBuffer> squareIB(impct::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -86,9 +88,9 @@ public:
 			}
 		)";
 
-		m_Shader.reset(new impct::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(impct::Shader::Create(vertexSrc, fragmentSrc));
 
-		std::string BlueShaderVertexSrc = R"(
+		std::string FlatColorShaderVertexSrc = R"(
 			#version 330 core
 
 			layout(location = 0) in vec3 a_Position;
@@ -105,32 +107,45 @@ public:
 			}
 		)";
 
-		std::string BlueShaderFragmentSrc = R"(
+		std::string FlatColorShaderFragmentSrc = R"(
 			#version 330 core
 
 			layout(location = 0) out vec4 color;
 
 			in vec3 v_Position;
+			uniform vec3 u_Color;
 
 			void main()
 			{
-				color = vec4(0.2, 0.3, 0.8, 1.0);
+				color = vec4(u_Color, 1.0);
 			}
 		)";
 
-		m_BlueShader.reset(new impct::Shader(BlueShaderVertexSrc, BlueShaderFragmentSrc));
+		m_FlatColorShader.reset(impct::Shader::Create(FlatColorShaderVertexSrc, FlatColorShaderFragmentSrc));
 	}
 
 	void OnUpdate(impct::Timestep ts) override
 	{
 		IMPCT_TRACE("Delta Time = {0}s ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
 
-		//Camera Moving
-		if (impct::Input::IsKeyPressed(IMPCT_KEY_LEFT))	       m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-		else if (impct::Input::IsKeyPressed(IMPCT_KEY_RIGHT))  m_CameraPosition.x += m_CameraMoveSpeed * ts;
+		glm::vec2 cameraMovement(0.0f);
 
-		if (impct::Input::IsKeyPressed(IMPCT_KEY_UP))	       m_CameraPosition.y += m_CameraMoveSpeed * ts;
-		else if (impct::Input::IsKeyPressed(IMPCT_KEY_DOWN))   m_CameraPosition.y -= m_CameraMoveSpeed * ts;
+		//Camera Moving
+		if (impct::Input::IsKeyPressed(IMPCT_KEY_LEFT))	       cameraMovement.x -= 1.0f;
+		else if (impct::Input::IsKeyPressed(IMPCT_KEY_RIGHT))  cameraMovement.x += 1.0f;
+
+		if (impct::Input::IsKeyPressed(IMPCT_KEY_UP))	       cameraMovement.y += 1.0f;
+		else if (impct::Input::IsKeyPressed(IMPCT_KEY_DOWN))   cameraMovement.y -= 1.0f;
+
+		float cameraRotation = glm::radians(m_CameraRotation);
+
+		glm::vec2 rotatedMovement(
+			cameraMovement.x * cos(cameraRotation) - cameraMovement.y * sin(cameraRotation),
+			cameraMovement.x * sin(cameraRotation) + cameraMovement.y * cos(cameraRotation)
+		);
+
+		m_CameraPosition.x += rotatedMovement.x * m_CameraMoveSpeed * ts;
+		m_CameraPosition.y += rotatedMovement.y * m_CameraMoveSpeed * ts;
 
 		if (impct::Input::IsKeyPressed(IMPCT_KEY_A))	       m_CameraRotation += m_CameraRotationSpeed * ts;
 		if (impct::Input::IsKeyPressed(IMPCT_KEY_D))	       m_CameraRotation -= m_CameraRotationSpeed * ts;
@@ -151,16 +166,23 @@ public:
 		{
 			glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+			glm::vec4 redColor  = { 0.8f, 0.2f, 0.3f, 1.0f };
+			glm::vec4 blueColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+
+			std::dynamic_pointer_cast<impct::OpenGLShader>(m_FlatColorShader)->Bind();
+			std::dynamic_pointer_cast<impct::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+
 			for (int y = 0; y < 20; y++)
 			{
 				for (int x = 0; x < 20; x++)
 				{
 					glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 					glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-					impct::Renderer::Submit(m_BlueShader, m_SquareVA, transform);
+					impct::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 				}
 			}
-			//impct::Renderer::Submit(m_Shader, m_VertexArray);
+
+			impct::Renderer::Submit(m_Shader, m_VertexArray);
 		}
 		impct::Renderer::EndScene();
 	}
@@ -171,14 +193,19 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
+		ImGui::Begin("Settings");
+		{
+			ImGui::ColorEdit3("SquareColor", glm::value_ptr(m_SquareColor));
+		}
+		ImGui::End();
 	}
 
 private:
-	std::shared_ptr<impct::VertexArray> m_VertexArray;
-	std::shared_ptr<impct::Shader> m_Shader;
+	impct::Ref<impct::VertexArray> m_VertexArray;
+	impct::Ref<impct::Shader> m_Shader;
 
-	std::shared_ptr<impct::Shader> m_BlueShader;
-	std::shared_ptr<impct::VertexArray> m_SquareVA;
+	impct::Ref<impct::Shader> m_FlatColorShader;
+	impct::Ref<impct::VertexArray> m_SquareVA;
 
 	impct::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
@@ -186,6 +213,8 @@ private:
 
 	glm::vec3 m_SquarePosition;
 	float m_SquareMoveSpeed = 1.0f;
+
+	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
 
 class Sandbox : public impct::Application
