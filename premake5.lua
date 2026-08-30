@@ -15,6 +15,7 @@ IncludeDir["GLFW"] = "Impaction/vendor/GLFW/include"
 IncludeDir["Glad"] = "Impaction/vendor/GLAD/include"
 IncludeDir["ImGui"] = "Impaction/vendor/imgui"
 IncludeDir["glm"] = "Impaction/vendor/glm"
+IncludeDir["stb_image"] = "Impaction/vendor/stb_image"
 
 include "Impaction/vendor/GLFW"
 include "Impaction/vendor/Glad"
@@ -61,6 +62,8 @@ project "Impaction"
 	files {
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
@@ -71,7 +74,8 @@ project "Impaction"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links {

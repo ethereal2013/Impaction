@@ -1,4 +1,4 @@
-#include <impct_pch.h>
+#include "impct_pch.h"
 
 #include "OpenGLVertexArray.h"
 #include <glad/glad.h>
@@ -27,26 +27,11 @@ namespace impct
 		return 0;
 	}
 
-	OpenGLVertexArray::OpenGLVertexArray()
-	{
-		glCreateVertexArrays(1, &m_RendererID);
-	}
+	OpenGLVertexArray::OpenGLVertexArray()  { glCreateVertexArrays(1, &m_RendererID); }
+	OpenGLVertexArray::~OpenGLVertexArray() { glDeleteVertexArrays(1, &m_RendererID); }
 
-
-	OpenGLVertexArray::~OpenGLVertexArray()
-	{
-		glDeleteVertexArrays(1, &m_RendererID);
-	}
-
-	void OpenGLVertexArray::Bind() const
-	{
-		glBindVertexArray(m_RendererID);
-	}
-
-	void OpenGLVertexArray::Unbind() const
-	{
-		glBindVertexArray(0);
-	}
+	void OpenGLVertexArray::Bind() const   { glBindVertexArray(m_RendererID); }
+	void OpenGLVertexArray::Unbind() const { glBindVertexArray(0); }
 
 	void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer> vertexBuffer)
 	{

@@ -36,16 +36,19 @@ public:
 
 		m_SquareVA.reset(impct::VertexArray::Create());
 
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f,  0.0f,
-			 0.5f, -0.5f,  0.0f,
-			 0.5f,  0.5f,  0.0f,
-			-0.5f,  0.5f,  0.0f,
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f,  0.0f,  0.0f,  0.0f,
+			 0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+			 0.5f,  0.5f,  0.0f,  1.0f,  1.0f,
+			-0.5f,  0.5f,  0.0f,  0.0f,  1.0f
 		};
 
 		impct::Ref<impct::VertexBuffer> squareVB(impct::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 
-		squareVB->SetLayout({ { impct::ShaderDataType::Float3, "a_Position" } });
+		squareVB->SetLayout({
+			{ impct::ShaderDataType::Float3, "a_Position" },
+			{ impct::ShaderDataType::Float2, "a_TextCoord" }
+		} );
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
@@ -122,15 +125,54 @@ public:
 		)";
 
 		m_FlatColorShader.reset(impct::Shader::Create(FlatColorShaderVertexSrc, FlatColorShaderFragmentSrc));
+
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TextCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TextCoord;
+
+			void main()
+			{
+				v_TextCoord = a_TextCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
+			}
+		)";
+
+		std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TextCoord;
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = texture(u_Texture, v_TextCoord);
+			}
+		)";
+
+		m_TextureShader.reset(impct::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+		m_Texture = impct::Texture2D::Create("assets/textures/checkerboard-512x512.png");
+
+		std::dynamic_pointer_cast<impct::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<impct::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(impct::Timestep ts) override
 	{
 		IMPCT_TRACE("Delta Time = {0}s ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
 
+		//------------------------------- Camera Movement ----------------------------------
+
 		glm::vec2 cameraMovement(0.0f);
 
-		//Camera Moving
 		if (impct::Input::IsKeyPressed(IMPCT_KEY_LEFT))	       cameraMovement.x -= 1.0f;
 		else if (impct::Input::IsKeyPressed(IMPCT_KEY_RIGHT))  cameraMovement.x += 1.0f;
 
@@ -139,6 +181,7 @@ public:
 
 		float cameraRotation = glm::radians(m_CameraRotation);
 
+		//World (x, y) is NOT camera rotated (x, y).
 		glm::vec2 rotatedMovement(
 			cameraMovement.x * cos(cameraRotation) - cameraMovement.y * sin(cameraRotation),
 			cameraMovement.x * sin(cameraRotation) + cameraMovement.y * cos(cameraRotation)
@@ -147,14 +190,20 @@ public:
 		m_CameraPosition.x += rotatedMovement.x * m_CameraMoveSpeed * ts;
 		m_CameraPosition.y += rotatedMovement.y * m_CameraMoveSpeed * ts;
 
-		if (impct::Input::IsKeyPressed(IMPCT_KEY_A))	       m_CameraRotation += m_CameraRotationSpeed * ts;
-		if (impct::Input::IsKeyPressed(IMPCT_KEY_D))	       m_CameraRotation -= m_CameraRotationSpeed * ts;
+		if (impct::Input::IsKeyPressed(IMPCT_KEY_A)) m_CameraRotation += m_CameraRotationSpeed * ts;
+		if (impct::Input::IsKeyPressed(IMPCT_KEY_D)) m_CameraRotation -= m_CameraRotationSpeed * ts;
 
-		if (impct::Input::IsKeyPressed(IMPCT_KEY_J))	       m_SquarePosition.x -= m_SquareMoveSpeed * ts;
-		else if (impct::Input::IsKeyPressed(IMPCT_KEY_L))      m_SquarePosition.x += m_SquareMoveSpeed * ts;
+		//----------------------------------------------------------------------------------
 
-		if (impct::Input::IsKeyPressed(IMPCT_KEY_I))	       m_SquarePosition.y += m_SquareMoveSpeed * ts;
-		else if (impct::Input::IsKeyPressed(IMPCT_KEY_K))      m_SquarePosition.y -= m_SquareMoveSpeed * ts;
+		//------------------------------- Square Movement ----------------------------------
+
+		if (impct::Input::IsKeyPressed(IMPCT_KEY_J))	  m_SquarePosition.x -= m_SquareMoveSpeed * ts;
+		else if (impct::Input::IsKeyPressed(IMPCT_KEY_L)) m_SquarePosition.x += m_SquareMoveSpeed * ts;
+
+		if (impct::Input::IsKeyPressed(IMPCT_KEY_I))	  m_SquarePosition.y += m_SquareMoveSpeed * ts;
+		else if (impct::Input::IsKeyPressed(IMPCT_KEY_K)) m_SquarePosition.y -= m_SquareMoveSpeed * ts;
+
+		//----------------------------------------------------------------------------------
 
 		impct::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 			impct::RenderCommand::Clear();
@@ -182,7 +231,10 @@ public:
 				}
 			}
 
-			impct::Renderer::Submit(m_Shader, m_VertexArray);
+			//impct::Renderer::Submit(m_Shader, m_VertexArray);
+			m_Texture->Bind();
+			impct::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
 		}
 		impct::Renderer::EndScene();
 	}
@@ -204,8 +256,10 @@ private:
 	impct::Ref<impct::VertexArray> m_VertexArray;
 	impct::Ref<impct::Shader> m_Shader;
 
-	impct::Ref<impct::Shader> m_FlatColorShader;
+	impct::Ref<impct::Shader> m_FlatColorShader, m_TextureShader;
 	impct::Ref<impct::VertexArray> m_SquareVA;
+
+	impct::Ref<impct::Texture2D> m_Texture;
 
 	impct::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

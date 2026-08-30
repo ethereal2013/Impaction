@@ -48,4 +48,9 @@ namespace impct
 	template<typename T>
 	using IPUniquePtr = Scope<T>;
 
+	template <typename T, typename... Args>
+	[[nodiscard]] Ref<T> MakeRef(Args&&... args)
+	{
+		return std::make_shared<T>(std::forward<Args>(args)...);
+	}
 }

@@ -21,6 +21,7 @@
 #include "Impaction/Renderer/RenderCommand.h"
 #include "Impaction/Renderer/Buffer.h"
 #include "Impaction/Renderer/Shader.h"
+#include "Impaction/Renderer/Texture.h"
 #include "Impaction/Renderer/VertexArray.h"
 #include "Impaction/Renderer/OrthographicCamera.h"
 /*---------------------------------------*/
