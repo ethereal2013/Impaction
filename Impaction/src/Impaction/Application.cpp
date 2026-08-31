@@ -1,6 +1,8 @@
 #include "impct_pch.h"
 #include "Application.h"
 
+#include "Impaction/Renderer/Renderer.h"
+
 #include <GLFW/glfw3.h>
 
 namespace impct
@@ -15,7 +17,9 @@ namespace impct
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(IMPCT_BIND_EVENT_FN(Application::OnEvent));
-		m_Window->SetVSync(true);
+		m_Window->SetVSync(true); //60 fps
+
+		Renderer::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
