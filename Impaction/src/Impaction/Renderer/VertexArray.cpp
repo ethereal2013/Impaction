@@ -8,7 +8,7 @@
 namespace impct
 {
 
-	VertexArray* VertexArray::Create()
+	Ref<VertexArray> VertexArray::Create()
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -17,7 +17,7 @@ namespace impct
 			return nullptr;
 
 		case RendererAPI::API::OpenGL:
-			return new OpenGLVertexArray();
+			return MakeRef<OpenGLVertexArray>();
 		}
 
 		IMPCT_CORE_ASSERT(false, "Unknown RendererAPI!")

@@ -11,7 +11,7 @@ public:
 	ExampleLayer()
 		: impct::Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f), m_SquarePosition(0.0f)
 	{
-		m_VertexArray.reset(impct::VertexArray::Create());
+		m_VertexArray = impct::VertexArray::Create();
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -27,14 +27,14 @@ public:
 		};
 
 		vertexBuffer->SetLayout(layout);
-
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
 		impct::Ref<impct::IndexBuffer> indexBuffer(impct::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
+	
 
-		m_SquareVA.reset(impct::VertexArray::Create());
+		m_SquareVA = impct::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f,  0.0f,  0.0f,  0.0f,
@@ -57,108 +57,12 @@ public:
 
 		m_SquareVA->SetIndexBuffer(squareIB);
 
-		std::string vertexSrc = R"(
-			#version 330 core
+		//Shaders
+		m_Shader = impct::Shader::Create("assets/shaders/Triangle.glsl");
+		m_FlatColorShader = impct::Shader::Create("assets/shaders/FlatColor.glsl");
+		m_TextureShader = impct::Shader::Create("assets/shaders/Texture.glsl");
 
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec3 v_Position;
-			out vec4 v_Color;
-
-			void main()
-			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string fragmentSrc = R"(
-			#version 330 core
-
-			layout(location = 0) out vec4 color;
-
-			in vec3 v_Position;
-			in vec4 v_Color;
-
-			void main()
-			{
-				color = v_Color;
-			}
-		)";
-
-		m_Shader.reset(impct::Shader::Create(vertexSrc, fragmentSrc));
-
-		std::string FlatColorShaderVertexSrc = R"(
-			#version 330 core
-
-			layout(location = 0) in vec3 a_Position;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec3 v_Position;
-
-			void main()
-			{
-				v_Position = a_Position;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string FlatColorShaderFragmentSrc = R"(
-			#version 330 core
-
-			layout(location = 0) out vec4 color;
-
-			in vec3 v_Position;
-			uniform vec3 u_Color;
-
-			void main()
-			{
-				color = vec4(u_Color, 1.0);
-			}
-		)";
-
-		m_FlatColorShader.reset(impct::Shader::Create(FlatColorShaderVertexSrc, FlatColorShaderFragmentSrc));
-
-		std::string textureShaderVertexSrc = R"(
-			#version 330 core
-
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec2 a_TextCoord;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec2 v_TextCoord;
-
-			void main()
-			{
-				v_TextCoord = a_TextCoord;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string textureShaderFragmentSrc = R"(
-			#version 330 core
-
-			layout(location = 0) out vec4 color;
-
-			in vec2 v_TextCoord;
-			uniform sampler2D u_Texture;
-
-			void main()
-			{
-				color = texture(u_Texture, v_TextCoord);
-			}
-		)";
-
-		m_TextureShader.reset(impct::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+		//Textures
 		m_Texture = impct::Texture2D::Create("assets/textures/chess.png");
 		m_LogoTexture = impct::Texture2D::Create("assets/textures/logo.png");
 
@@ -232,7 +136,11 @@ public:
 				}
 			}
 
-			//impct::Renderer::Submit(m_Shader, m_VertexArray);
+			//Triangle
+			/*{
+				impct::Renderer::Submit(m_Shader, m_VertexArray);
+			}*/
+
 			m_Texture->Bind();
 			impct::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 

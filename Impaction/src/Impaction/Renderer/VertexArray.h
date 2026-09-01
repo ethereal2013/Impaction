@@ -20,7 +20,7 @@ namespace impct
 		virtual const std::vector<Ref<VertexBuffer>>& GetVertexBuffers() const = 0;
 		virtual const Ref<IndexBuffer>& GetIndexBuffer() const = 0;
 
-		[[nodiscard]] static VertexArray* Create();
+		[[nodiscard]] static Ref<VertexArray> Create();
 	};
 
 }

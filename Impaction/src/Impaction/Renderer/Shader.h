@@ -13,7 +13,8 @@ namespace impct
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
 
-		[[nodiscard]] static Shader* Create(const std::string& vertexSrc, const std::string& fragmentSrc);
+		[[nodiscard]] static Ref<Shader> Create(const std::string& filepath);
+		[[nodiscard]] static Ref<Shader> Create(const std::string& vertexSrc, const std::string& fragmentSrc);
 	};
 
 }

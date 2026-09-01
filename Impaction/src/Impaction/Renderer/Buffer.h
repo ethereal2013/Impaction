@@ -100,7 +100,7 @@ namespace impct
 		virtual const BufferLayout& GetLayout() const = 0;
 		virtual void SetLayout(const BufferLayout& layout) = 0;
 
-		[[nodiscard]] static VertexBuffer* Create(const float* vertices, uint32_t size);
+		[[nodiscard]] static Ref<VertexBuffer> Create(const float* vertices, uint32_t size);
 	};
 
 	class IndexBuffer
@@ -113,7 +113,7 @@ namespace impct
 
 		virtual uint32_t GetCount() const = 0;
 
-		[[nodiscard]] static IndexBuffer* Create(const uint32_t* indices, uint32_t count);
+		[[nodiscard]] static Ref<IndexBuffer> Create(const uint32_t* indices, uint32_t count);
 	};
 
 }
