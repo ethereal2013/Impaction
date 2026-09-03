@@ -58,16 +58,16 @@ public:
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 		//Shaders
-		m_Shader = impct::Shader::Create("assets/shaders/Triangle.glsl");
+		m_Shader = impct::Shader::Create("assets/shaders/TriangleShader.glsl");
 		m_FlatColorShader = impct::Shader::Create("assets/shaders/FlatColor.glsl");
-		m_TextureShader = impct::Shader::Create("assets/shaders/Texture.glsl");
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		//Textures
 		m_Texture = impct::Texture2D::Create("assets/textures/chess.png");
 		m_LogoTexture = impct::Texture2D::Create("assets/textures/logo.png");
 
-		std::dynamic_pointer_cast<impct::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<impct::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<impct::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<impct::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(impct::Timestep ts) override
@@ -141,11 +141,14 @@ public:
 				impct::Renderer::Submit(m_Shader, m_VertexArray);
 			}*/
 
+			
+			auto textureShader = m_ShaderLibrary.Get("Texture");
+
 			m_Texture->Bind();
-			impct::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+			impct::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 			m_LogoTexture->Bind();
-			impct::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+			impct::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		}
 		impct::Renderer::EndScene();
@@ -165,10 +168,14 @@ public:
 	}
 
 private:
+	//NOTE: The implementation of ShaderLibrary will be part of the renderer.
+	//This is temporary
+	impct::ShaderLibrary m_ShaderLibrary;
+
 	impct::Ref<impct::VertexArray> m_VertexArray;
 	impct::Ref<impct::Shader> m_Shader;
 
-	impct::Ref<impct::Shader> m_FlatColorShader, m_TextureShader;
+	impct::Ref<impct::Shader> m_FlatColorShader;
 	impct::Ref<impct::VertexArray> m_SquareVA;
 
 	impct::Ref<impct::Texture2D> m_Texture, m_LogoTexture;
