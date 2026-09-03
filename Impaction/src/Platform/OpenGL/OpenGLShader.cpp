@@ -1,7 +1,7 @@
 #include "impct_pch.h"
 #include "OpenGLShader.h"
 
-#include <fstream>
+#include <filesystem>
 #include <glad/glad.h>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -22,13 +22,9 @@ namespace impct
 		auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
 
-		//Extracting name from filepath
-		auto lastSlash = filepath.find_last_of("/\\");
-		lastSlash = lastSlash == std::string::npos ? 0 : lastSlash;
-		auto lastDot = filepath.rfind(".");
-		uint64_t count = lastDot == std::string::npos ? filepath.size() - lastSlash : lastDot - lastSlash;
-
-		 m_Name = filepath.substr(lastSlash + 1, count - 1);
+		//Extracting filename
+		std::filesystem::path path = filepath;
+		m_Name = path.stem().string();
 	}
 
 	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
