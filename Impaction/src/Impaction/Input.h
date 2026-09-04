@@ -7,19 +7,19 @@ namespace impct
 	class Input
 	{
 	public:
-		inline static bool IsKeyPressed(int keycode) 
+		static inline bool IsKeyPressed(int keycode) 
 		{ return s_Instance->IsKeyPressedImpl(keycode); }
 
-		inline static bool IsMouseButtonPressed(int button) 
+		static inline bool IsMouseButtonPressed(int button) 
 		{ return s_Instance->IsMouseButtonPressedImpl(button); }
 
-		inline static float GetMouseX() 
+		static inline float GetMouseX() 
 		{ return s_Instance->GetMouseXImpl(); }
 
-		inline static float GetMouseY() 
+		static inline float GetMouseY() 
 		{ return s_Instance->GetMouseYImpl(); }
 
-		inline static std::pair<float, float> GetMousePos() 
+		static inline std::pair<float, float> GetMousePos() 
 		{ return s_Instance->GetMousePosImpl(); }
 
 	protected:

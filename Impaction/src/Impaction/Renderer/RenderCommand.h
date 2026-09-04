@@ -8,14 +8,17 @@ namespace impct
 	class RenderCommand
 	{
 	public:
-		inline static void Init() { s_RendererAPI->Init(); }
+		static inline void Init() { s_RendererAPI->Init(); }
+
+		static inline void SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height)
+		{ return s_RendererAPI->SetViewport(x, y, width, height); }
 		
-		inline static void SetClearColor(const glm::vec4 color) 
+		static inline void SetClearColor(const glm::vec4 color) 
 		{ return s_RendererAPI->SetClearColor(color); }
 
-		inline static void Clear() { return s_RendererAPI->Clear(); }
+		static inline void Clear() { return s_RendererAPI->Clear(); }
 
-		inline static void DrawIndexed(const Ref<VertexArray>& vertexArray) 
+		static inline void DrawIndexed(const Ref<VertexArray>& vertexArray) 
 		{ return s_RendererAPI->DrawIndexed(vertexArray); }
 
 	private:

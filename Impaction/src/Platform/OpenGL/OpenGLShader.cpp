@@ -22,7 +22,6 @@ namespace impct
 		auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
 
-		//Extracting filename
 		std::filesystem::path path = filepath;
 		m_Name = path.stem().string();
 	}

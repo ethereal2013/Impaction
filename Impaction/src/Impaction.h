@@ -14,6 +14,7 @@
 #include "Impaction/Core/Timestep.h"
 #include "Impaction/KeyCodes.h"
 #include "Impaction/MouseButtonCodes.h"
+#include "Impaction/OrthographicCameraController.h"
 /*---------------------------------------*/
 
 /*--------------- Renderer --------------*/

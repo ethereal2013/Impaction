@@ -57,14 +57,11 @@ namespace impct
 	//Event dispatch system
 	class EventDispatcher
 	{
-		template<typename T>
-		using EventFn = std::function<bool(T&)>;
-
 	public:
 		EventDispatcher(Event& event) : m_Event(event) { }
 
-		template<typename T>
-		inline bool Dispatch(EventFn<T> func) {
+		template<typename T, typename F>
+		inline bool Dispatch(const F& func) {
 
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{

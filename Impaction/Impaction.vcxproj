@@ -53,9 +53,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-    <PropertyGroup>
-      <VcpkgXUseBuiltInApplocalDeps>true</VcpkgXUseBuiltInApplocalDeps>
-    </PropertyGroup>
+  <PropertyGroup>
+    <VcpkgXUseBuiltInApplocalDeps>true</VcpkgXUseBuiltInApplocalDeps>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)..\bin\Debug-windows-x86_64\Impaction\</OutDir>
     <IntDir>$(ProjectDir)..\bin-int\Debug-windows-x86_64\Impaction\</IntDir>
@@ -155,6 +155,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Impaction\OrthographicCameraController.h" />
     <ClInclude Include="src\Impaction.h" />
     <ClInclude Include="src\Impaction\Application.h" />
     <ClInclude Include="src\Impaction\Core.h" />
@@ -612,6 +613,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Impaction\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Impaction\Application.cpp" />
     <ClCompile Include="src\Impaction\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Impaction\ImGui\ImGuiLayer.cpp" />
