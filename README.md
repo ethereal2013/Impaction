@@ -63,6 +63,14 @@ At its current stage, the project closely resembles Hazel's architecture and imp
 
 As development progresses, Impaction is intended to evolve beyond its initial reference implementation i.e. Hazel2D. Soon having independently designed systems, experiments, architectural changes, and features introduced over time.
 
-## Contact
+## Contact Us
 
-**
+If you are interested in Impaction, game engine development, graphics programming, or simply want to follow the project's progress, feel free to join our community.
+
+[Our Discord](https://discord.gg/mVgNpnuTCY)
+
+## Contributing
+
+Impaction is a long-term project, and contributions, suggestions, bug reports, and discussions are always welcome. Whether you are interested in improving the engine, experimenting with new systems, or simply exploring the codebase, you are welcome to participate.
+
+As Impaction continues to develop, this repository will evolve alongside it. We hope that the project can serve not only as an engine, but also as a place to experiment, learn, and explore the foundations of game and graphics programming.
