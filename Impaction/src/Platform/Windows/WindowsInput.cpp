@@ -2,7 +2,7 @@
 #include "WindowsInput.h"
 
 #include <GLFW/glfw3.h>
-#include "Impaction/Application.h"
+#include "Impaction/Core/Application.h"
 
 namespace impct
 {

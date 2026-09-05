@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Impaction/Core.h"
+#include "Impaction/Core/Core.h"
 #include "Impaction/Core/Timestep.h"
 #include "Impaction/Events/Event.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Impaction/Core.h"
+#include "Impaction/Core/Core.h"
 
 namespace impct
 {

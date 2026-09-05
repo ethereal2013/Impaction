@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Impaction/Input.h"
+#include "Impaction/Core/Input.h"
 
 namespace impct
 {

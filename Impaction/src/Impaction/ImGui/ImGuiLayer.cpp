@@ -7,7 +7,7 @@
 #include <backends/imgui_impl_glfw.h>
 
 
-#include "Impaction/Application.h"
+#include "Impaction/Core/Application.h"
 
 //TEMPORARY
 #include <GLFW/glfw3.h>

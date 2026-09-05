@@ -3,18 +3,18 @@
 //MainHeader
 //To be used by client
 
-#include "Impaction/Log.h"
-#include "Impaction/Layer.h"
-#include "Impaction/Application.h"
+#include "Impaction/Core/Log.h"
+#include "Impaction/Core/Layer.h"
+#include "Impaction/Core/Application.h"
 
 #include "Impaction/ImGui/ImGuiLayer.h"
 
 /*---------------- Utils ----------------*/
-#include "Impaction/Input.h"
+#include "Impaction/Core/Input.h"
 #include "Impaction/Core/Timestep.h"
-#include "Impaction/KeyCodes.h"
-#include "Impaction/MouseButtonCodes.h"
-#include "Impaction/OrthographicCameraController.h"
+#include "Impaction/Core/KeyCodes.h"
+#include "Impaction/Core/MouseButtonCodes.h"
+#include "Impaction/Renderer/OrthographicCameraController.h"
 /*---------------------------------------*/
 
 /*--------------- Renderer --------------*/
@@ -28,5 +28,5 @@
 /*---------------------------------------*/
 
 /*------EntryPoint(main function) ------*/
-#include "Impaction/EntryPoint.h"
+#include "Impaction/Core/EntryPoint.h"
 /*---------------------------------------*/

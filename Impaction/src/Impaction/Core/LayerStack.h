@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Impaction/Core.h"
-#include "Layer.h"
+#include "Impaction/Core/Core.h"
+#include "Impaction/Core/Layer.h"
 
 #include <vector>
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Impaction/Layer.h"
+#include "Impaction/Core/Layer.h"
 
 #include "Impaction/Events/KeyEvent.h"
 #include "Impaction/Events/MouseEvent.h"

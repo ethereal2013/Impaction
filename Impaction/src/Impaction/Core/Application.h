@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Core.h"
-#include "Window.h"
-#include "Input.h"
+#include "Impaction/Core/Core.h"
+#include "Impaction/Core/Window.h"
+#include "Impaction/Core/Input.h"
 
-#include "Impaction/LayerStack.h"
+#include "Impaction/Core/LayerStack.h"
 
 #include "Impaction/Events/Event.h"
 #include "Impaction/Events/ApplicationEvent.h"

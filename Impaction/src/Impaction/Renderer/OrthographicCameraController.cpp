@@ -1,6 +1,6 @@
 #include "impct_pch.h"
-#include "Impaction/KeyCodes.h"
-#include "Impaction/Input.h"
+#include "Impaction/Core/KeyCodes.h"
+#include "Impaction/Core/Input.h"
 #include "OrthographicCameraController.h"
 
 namespace impct

@@ -9,10 +9,15 @@ A C++ 2D Game Engine inspired from Hazel 2D built for learning, experimentation 
 ## Current Project Status
 
 **Development:** Impaction is currently in its first half with the fundamentals of the engine set up and working.
+
 **Graphics API:** OpenGL.
+
 **Language:** C++.
+
 **Dialect:** C++ 17 (ISO/IEC 14882:2017).
+
 **Platform:** Only available on Windows.
+
 **License:** [License](LICENSE)
 
 ## Overview
@@ -38,6 +43,7 @@ In its early development stage, Impaction has a long time before it can stand up
 ### Requirements
 
 *Note: Currently, Impaction only works on Windows.*
+
 To build a game or 2D software using Impaction, using Visual Studio is highly recomended.
 VS Code is generally not the recommended choice as it is not as much of a robust C++ IDE.
 
@@ -46,7 +52,8 @@ The [premake](premake5.lua), [EntryPoint.h](Impaction/src/Impaction/EntryPoint.h
 ### Cloning
 
 **1. Downloading the Repository:**
-Make sure git is installed. Open command prompt or git bash at the desired directory. If opened at `C:\Users\{Name}` then use `cd "{Desired-Directory}"` to reach there. Clone the repository with `git clone --recursive https://github.com/ethereal2013/Impaction.git`.
+Make sure git is installed. Open command prompt or git bash at the desired directory. If opened at `C:\Users\{Name}` then use `cd "{Desired-Directory}"` to reach there. Clone the repository with
+`git clone --recursive https://github.com/ethereal2013/Impaction.git`.
 
 If the repository was previously cloned non-recursively, use `git submodule update --init` to clone the necessary submodules.
 

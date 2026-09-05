@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Impaction/Window.h"
+#include "Impaction/Core/Window.h"
 #include <GLFW/glfw3.h>
 
 #include "Impaction/Renderer/GraphicsContext.h"

@@ -16,7 +16,7 @@
 #include <unordered_set>
 #include <initializer_list>
 
-#include "Impaction/Log.h"
+#include "Impaction/Core/Log.h"
 
 
 #ifdef IMPCT_PLATFORM_WINDOWS

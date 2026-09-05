@@ -53,9 +53,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup>
-    <VcpkgXUseBuiltInApplocalDeps>true</VcpkgXUseBuiltInApplocalDeps>
-  </PropertyGroup>
+    <PropertyGroup>
+      <VcpkgXUseBuiltInApplocalDeps>true</VcpkgXUseBuiltInApplocalDeps>
+    </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)..\bin\Debug-windows-x86_64\Impaction\</OutDir>
     <IntDir>$(ProjectDir)..\bin-int\Debug-windows-x86_64\Impaction\</IntDir>
@@ -155,33 +155,33 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Impaction\OrthographicCameraController.h" />
     <ClInclude Include="src\Impaction.h" />
-    <ClInclude Include="src\Impaction\Application.h" />
-    <ClInclude Include="src\Impaction\Core.h" />
+    <ClInclude Include="src\Impaction\Core\Application.h" />
+    <ClInclude Include="src\Impaction\Core\Core.h" />
+    <ClInclude Include="src\Impaction\Core\EntryPoint.h" />
+    <ClInclude Include="src\Impaction\Core\Input.h" />
+    <ClInclude Include="src\Impaction\Core\KeyCodes.h" />
+    <ClInclude Include="src\Impaction\Core\Layer.h" />
+    <ClInclude Include="src\Impaction\Core\LayerStack.h" />
+    <ClInclude Include="src\Impaction\Core\Log.h" />
+    <ClInclude Include="src\Impaction\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Impaction\Core\Timestep.h" />
-    <ClInclude Include="src\Impaction\EntryPoint.h" />
+    <ClInclude Include="src\Impaction\Core\Window.h" />
     <ClInclude Include="src\Impaction\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Impaction\Events\Event.h" />
     <ClInclude Include="src\Impaction\Events\KeyEvent.h" />
     <ClInclude Include="src\Impaction\Events\MouseEvent.h" />
     <ClInclude Include="src\Impaction\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Impaction\Input.h" />
-    <ClInclude Include="src\Impaction\KeyCodes.h" />
-    <ClInclude Include="src\Impaction\Layer.h" />
-    <ClInclude Include="src\Impaction\LayerStack.h" />
-    <ClInclude Include="src\Impaction\Log.h" />
-    <ClInclude Include="src\Impaction\MouseButtonCodes.h" />
     <ClInclude Include="src\Impaction\Renderer\Buffer.h" />
     <ClInclude Include="src\Impaction\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Impaction\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Impaction\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Impaction\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Impaction\Renderer\Renderer.h" />
     <ClInclude Include="src\Impaction\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Impaction\Renderer\Shader.h" />
     <ClInclude Include="src\Impaction\Renderer\Texture.h" />
     <ClInclude Include="src\Impaction\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Impaction\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -613,15 +613,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Impaction\OrthographicCameraController.cpp" />
-    <ClCompile Include="src\Impaction\Application.cpp" />
+    <ClCompile Include="src\Impaction\Core\Application.cpp" />
+    <ClCompile Include="src\Impaction\Core\Layer.cpp" />
+    <ClCompile Include="src\Impaction\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Impaction\Core\Log.cpp" />
     <ClCompile Include="src\Impaction\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Impaction\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Impaction\Layer.cpp" />
-    <ClCompile Include="src\Impaction\LayerStack.cpp" />
-    <ClCompile Include="src\Impaction\Log.cpp" />
     <ClCompile Include="src\Impaction\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Impaction\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Impaction\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Impaction\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Impaction\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Impaction\Renderer\RendererAPI.cpp" />

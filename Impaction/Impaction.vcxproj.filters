@@ -57,17 +57,38 @@
     <ClInclude Include="src\Impaction.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Impaction\Application.h">
-      <Filter>src\Impaction</Filter>
+    <ClInclude Include="src\Impaction\Core\Application.h">
+      <Filter>src\Impaction\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Impaction\Core.h">
-      <Filter>src\Impaction</Filter>
+    <ClInclude Include="src\Impaction\Core\Core.h">
+      <Filter>src\Impaction\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Core\EntryPoint.h">
+      <Filter>src\Impaction\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Core\Input.h">
+      <Filter>src\Impaction\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Core\KeyCodes.h">
+      <Filter>src\Impaction\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Core\Layer.h">
+      <Filter>src\Impaction\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Core\LayerStack.h">
+      <Filter>src\Impaction\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Core\Log.h">
+      <Filter>src\Impaction\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Core\MouseButtonCodes.h">
+      <Filter>src\Impaction\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Impaction\Core\Timestep.h">
       <Filter>src\Impaction\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Impaction\EntryPoint.h">
-      <Filter>src\Impaction</Filter>
+    <ClInclude Include="src\Impaction\Core\Window.h">
+      <Filter>src\Impaction\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Impaction\Events\ApplicationEvent.h">
       <Filter>src\Impaction\Events</Filter>
@@ -84,24 +105,6 @@
     <ClInclude Include="src\Impaction\ImGui\ImGuiLayer.h">
       <Filter>src\Impaction\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Impaction\Input.h">
-      <Filter>src\Impaction</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Impaction\KeyCodes.h">
-      <Filter>src\Impaction</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Impaction\Layer.h">
-      <Filter>src\Impaction</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Impaction\LayerStack.h">
-      <Filter>src\Impaction</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Impaction\Log.h">
-      <Filter>src\Impaction</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Impaction\MouseButtonCodes.h">
-      <Filter>src\Impaction</Filter>
-    </ClInclude>
     <ClInclude Include="src\Impaction\Renderer\Buffer.h">
       <Filter>src\Impaction\Renderer</Filter>
     </ClInclude>
@@ -109,6 +112,9 @@
       <Filter>src\Impaction\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Impaction\Renderer\OrthographicCamera.h">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Impaction\Renderer\OrthographicCameraController.h">
       <Filter>src\Impaction\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Impaction\Renderer\RenderCommand.h">
@@ -128,9 +134,6 @@
     </ClInclude>
     <ClInclude Include="src\Impaction\Renderer\VertexArray.h">
       <Filter>src\Impaction\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Impaction\Window.h">
-      <Filter>src\Impaction</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1419,11 +1422,19 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Impaction\OrthographicCameraController.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Impaction\Application.cpp">
-      <Filter>src\Impaction</Filter>
+    <ClCompile Include="src\Impaction\Core\Application.cpp">
+      <Filter>src\Impaction\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Impaction\Core\Layer.cpp">
+      <Filter>src\Impaction\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Impaction\Core\LayerStack.cpp">
+      <Filter>src\Impaction\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Impaction\Core\Log.cpp">
+      <Filter>src\Impaction\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Impaction\ImGui\ImGuiBuild.cpp">
       <Filter>src\Impaction\ImGui</Filter>
@@ -1431,19 +1442,13 @@
     <ClCompile Include="src\Impaction\ImGui\ImGuiLayer.cpp">
       <Filter>src\Impaction\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Impaction\Layer.cpp">
-      <Filter>src\Impaction</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Impaction\LayerStack.cpp">
-      <Filter>src\Impaction</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Impaction\Log.cpp">
-      <Filter>src\Impaction</Filter>
-    </ClCompile>
     <ClCompile Include="src\Impaction\Renderer\Buffer.cpp">
       <Filter>src\Impaction\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Impaction\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Impaction\Renderer\OrthographicCameraController.cpp">
       <Filter>src\Impaction\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Impaction\Renderer\RenderCommand.cpp">
@@ -1494,6 +1499,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Impaction\OrthographicCameraController.cpp" />
   </ItemGroup>
 </Project>

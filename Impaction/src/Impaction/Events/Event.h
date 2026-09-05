@@ -1,7 +1,7 @@
 #pragma once
 
 #include "impct_pch.h"
-#include "Impaction/Core.h"
+#include "Impaction/Core/Core.h"
 #include <spdlog/fmt/fmt.h>
 
 namespace impct

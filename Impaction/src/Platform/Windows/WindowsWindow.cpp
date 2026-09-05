@@ -1,6 +1,6 @@
 #include "impct_pch.h"
 #include "WindowsWindow.h"
-#include "Impaction/Core.h"
+#include "Impaction/Core/Core.h"
 
 #include "Impaction/Events/KeyEvent.h"
 #include "Impaction/Events/MouseEvent.h"

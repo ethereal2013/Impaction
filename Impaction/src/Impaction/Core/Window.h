@@ -2,7 +2,7 @@
 
 #include "impct_pch.h"
 #include "Impaction/Events/Event.h"
-#include "Impaction/Core.h"
+#include "Impaction/Core/Core.h"
 
 namespace impct
 {
