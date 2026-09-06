@@ -85,7 +85,7 @@
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -112,7 +112,7 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -140,7 +140,7 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -178,6 +178,7 @@
     <ClInclude Include="src\Impaction\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Impaction\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Impaction\Renderer\Renderer.h" />
+    <ClInclude Include="src\Impaction\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Impaction\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Impaction\Renderer\Shader.h" />
     <ClInclude Include="src\Impaction\Renderer\Texture.h" />
@@ -624,6 +625,7 @@
     <ClCompile Include="src\Impaction\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Impaction\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Impaction\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Impaction\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Impaction\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Impaction\Renderer\Shader.cpp" />
     <ClCompile Include="src\Impaction\Renderer\Texture.cpp" />

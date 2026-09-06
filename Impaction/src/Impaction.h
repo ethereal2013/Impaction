@@ -19,14 +19,11 @@
 
 /*--------------- Renderer --------------*/
 #include "Impaction/Renderer/Renderer.h"
+#include "Impaction/Renderer/Renderer2D.h"
 #include "Impaction/Renderer/RenderCommand.h"
 #include "Impaction/Renderer/Buffer.h"
 #include "Impaction/Renderer/Shader.h"
 #include "Impaction/Renderer/Texture.h"
 #include "Impaction/Renderer/VertexArray.h"
 #include "Impaction/Renderer/OrthographicCamera.h"
-/*---------------------------------------*/
-
-/*------EntryPoint(main function) ------*/
-#include "Impaction/Core/EntryPoint.h"
 /*---------------------------------------*/

@@ -36,8 +36,6 @@
 namespace impct
 {
 	// Smart pointers
-	template<typename T>
-	using Scope = std::unique_ptr<T>;
 
 	template<typename T>
 	using Ref = std::shared_ptr<T>;
@@ -45,12 +43,21 @@ namespace impct
 	template<typename T>
 	using IPSharedPtr = Ref<T>;
 
+	template <typename T, typename... Args>
+	[[nodiscard]] constexpr Ref<T> MakeRef(Args&&... args)
+	{
+		return std::make_shared<T>(std::forward<Args>(args)...);
+	}
+
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
 	template<typename T>
 	using IPUniquePtr = Scope<T>;
 
 	template <typename T, typename... Args>
-	[[nodiscard]] Ref<T> MakeRef(Args&&... args)
+	[[nodiscard]] constexpr Scope<T> MakeScope(Args&&... args)
 	{
-		return std::make_shared<T>(std::forward<Args>(args)...);
+		return std::make_unique<T>(std::forward<Args>(args)...);
 	}
 }

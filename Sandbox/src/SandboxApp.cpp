@@ -1,15 +1,18 @@
 #include <Impaction.h>
-#include "Platform/OpenGL/OpenGLShader.h"
+#include <Impaction/Core/EntryPoint.h>
+#include <Platform/OpenGL/OpenGLShader.h>
 #include <imgui/imgui.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Sandbox2D.h"
+
 class ExampleLayer : public impct::Layer
 {
 public:
 	ExampleLayer()
-		: impct::Layer("Example"), m_CameraController(1280.0f / 720.0f, true)
+		: impct::Layer("Example"), m_CameraController(1280.0f / 720.0f)
 	{
 		m_VertexArray = impct::VertexArray::Create();
 
@@ -59,7 +62,7 @@ public:
 
 		//Shaders
 		m_Shader = impct::Shader::Create("assets/shaders/TriangleShader.glsl");
-		m_FlatColorShader = impct::Shader::Create("assets/shaders/FlatColor.glsl");
+		m_ColorShader = impct::Shader::Create("assets/shaders/Color.glsl");
 		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		//Textures
@@ -70,7 +73,7 @@ public:
 		std::dynamic_pointer_cast<impct::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
-	void OnUpdate(impct::Timestep ts) override
+	virtual void OnUpdate(impct::Timestep ts) override
 	{
 		m_CameraController.OnUpdate(ts);
 
@@ -84,8 +87,8 @@ public:
 			glm::vec4 redColor  = { 0.8f, 0.2f, 0.3f, 1.0f };
 			glm::vec4 blueColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 
-			std::dynamic_pointer_cast<impct::OpenGLShader>(m_FlatColorShader)->Bind();
-			std::dynamic_pointer_cast<impct::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+			std::dynamic_pointer_cast<impct::OpenGLShader>(m_ColorShader)->Bind();
+			std::dynamic_pointer_cast<impct::OpenGLShader>(m_ColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
 			for (int y = 0; y < 20; y++)
 			{
@@ -93,7 +96,7 @@ public:
 				{
 					glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 					glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-					impct::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
+					impct::Renderer::Submit(m_ColorShader, m_SquareVA, transform);
 				}
 			}
 
@@ -115,7 +118,7 @@ public:
 		impct::Renderer::EndScene();
 	}
 
-	void OnEvent(impct::Event& e) override
+	virtual void OnEvent(impct::Event& e) override
 	{
 		m_CameraController.OnEvent(e);
 	}
@@ -137,7 +140,7 @@ private:
 	impct::Ref<impct::VertexArray> m_VertexArray;
 	impct::Ref<impct::Shader> m_Shader;
 
-	impct::Ref<impct::Shader> m_FlatColorShader;
+	impct::Ref<impct::Shader> m_ColorShader;
 	impct::Ref<impct::VertexArray> m_SquareVA;
 
 	impct::Ref<impct::Texture2D> m_Texture, m_LogoTexture;
@@ -152,7 +155,8 @@ class Sandbox : public impct::Application
 public:
 	Sandbox()
 	{ 
-		PushLayer(new ExampleLayer()); 
+		//PushLayer(new ExampleLayer()); 
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox() override {}

@@ -123,6 +123,9 @@
     <ClInclude Include="src\Impaction\Renderer\Renderer.h">
       <Filter>src\Impaction\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Impaction\Renderer\Renderer2D.h">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Impaction\Renderer\RendererAPI.h">
       <Filter>src\Impaction\Renderer</Filter>
     </ClInclude>
@@ -1455,6 +1458,9 @@
       <Filter>src\Impaction\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Impaction\Renderer\Renderer.cpp">
+      <Filter>src\Impaction\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Impaction\Renderer\Renderer2D.cpp">
       <Filter>src\Impaction\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Impaction\Renderer\RendererAPI.cpp">
