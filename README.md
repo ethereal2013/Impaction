@@ -47,7 +47,7 @@ In its early development stage, Impaction has a long time before it can stand up
 To build a game or 2D software using Impaction, using Visual Studio is highly recomended.
 VS Code is generally not the recommended choice as it is not as much of a robust C++ IDE.
 
-The [premake](premake5.lua), [EntryPoint.h](Impaction/src/Impaction/EntryPoint.h) and [Core.h](Impaction/src/Impaction/Core.h) must be edited accordingly whilst experimenting usage with other Operating Systems.
+The [premake](premake5.lua), [EntryPoint.h](Impaction/src/Impaction/Core/EntryPoint.h) and [Core.h](Impaction/src/Impaction/Core/Core.h) must be edited accordingly whilst experimenting usage with other Operating Systems.
 
 ### Cloning
 
