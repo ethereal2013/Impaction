@@ -25,13 +25,16 @@ namespace impct
 		inline float GetZoomLevel() const { return m_ZoomLevel; }
 		inline void SetZoomLevel(float zoomLevel) { m_ZoomLevel = zoomLevel; }
 
+		inline float GetZoomPower() const { return m_ZoomPower; }
+		inline void SetZoomPower(float zoomPower) { m_ZoomPower = zoomPower; }
+
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& e);
 		bool OnWindowResized(WindowResizeEvent& e);
 
 	private:
 		float m_AspectRatio;
-		float m_ZoomLevel = 1.0f;
+		float m_ZoomLevel = 1.0f, m_ZoomPower = 0.25f;
 		OrthographicCamera m_Camera;
 
 		bool m_Rotation;
