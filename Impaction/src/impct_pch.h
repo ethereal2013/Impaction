@@ -17,6 +17,7 @@
 #include <initializer_list>
 
 #include "Impaction/Core/Log.h"
+#include "Impaction/Debug/Instrumentor.h"
 
 
 #ifdef IMPCT_PLATFORM_WINDOWS
