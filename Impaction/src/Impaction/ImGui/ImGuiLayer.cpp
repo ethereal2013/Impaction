@@ -21,6 +21,8 @@ namespace impct
 
 	void ImGuiLayer::OnAttach()
 	{
+		IMPCT_PROFILE_FUNCTION();
+
 		//Setup Dear ImGui Context
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -49,6 +51,8 @@ namespace impct
 
 	void ImGuiLayer::OnDetach()
 	{
+		IMPCT_PROFILE_FUNCTION();
+
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
@@ -56,6 +60,8 @@ namespace impct
 
 	void ImGuiLayer::Begin()
 	{
+		IMPCT_PROFILE_FUNCTION();
+
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 
@@ -64,6 +70,8 @@ namespace impct
 
 	void ImGuiLayer::End()
 	{
+		IMPCT_PROFILE_FUNCTION();
+
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
 

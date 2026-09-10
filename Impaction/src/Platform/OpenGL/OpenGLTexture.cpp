@@ -9,6 +9,8 @@ namespace impct
 	OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height)
 		: m_Width(width), m_Height(height)
 	{
+		IMPCT_PROFILE_FUNCTION();
+
 		m_InternalFormat = GL_RGBA8;
 		m_DataFormat = GL_RGBA;
 
@@ -22,9 +24,17 @@ namespace impct
 	OpenGLTexture2D::OpenGLTexture2D(const std::string& path)
 		: m_Path(path)
 	{
+		IMPCT_PROFILE_FUNCTION();
+
 		int width, height, channels;
 		stbi_set_flip_vertically_on_load(1);
-		stbi_uc* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
+		stbi_uc* data = nullptr;
+
+		{
+			IMPCT_PROFILE_SCOPE("stbi_load - OpenGLTexture2D::OpenGLTexture2D(const std::string&)");
+			data = stbi_load(path.c_str(), &width, &height, &channels, 0);
+		}
+
 		IMPCT_CORE_ASSERT(data, "Failed to Load Image!");
 
 		m_Width = width;
@@ -56,6 +66,8 @@ namespace impct
 
 	void OpenGLTexture2D::SetData(void* data, uint32_t size)
 	{
+		IMPCT_PROFILE_FUNCTION();
+
 		uint32_t bytesPerPixel = m_DataFormat == GL_RGBA ? 4 : 3;
 		IMPCT_CORE_ASSERT(size == m_Width * m_Height * bytesPerPixel, "Data must be entire texture!")
 

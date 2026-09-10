@@ -15,6 +15,8 @@ namespace impct
 
 	void OpenGLContext::Init()
 	{
+		IMPCT_PROFILE_FUNCTION();
+
 		glfwMakeContextCurrent(m_windowHandle);
 
 		int status = gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
@@ -28,6 +30,7 @@ namespace impct
 
 	void OpenGLContext::SwapBuffers()
 	{
+		IMPCT_PROFILE_FUNCTION();
 		glfwSwapBuffers(m_windowHandle);
 	}
 

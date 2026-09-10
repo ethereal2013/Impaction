@@ -27,14 +27,16 @@ namespace impct
 		return 0;
 	}
 
-	OpenGLVertexArray::OpenGLVertexArray()  { glCreateVertexArrays(1, &m_RendererID); }
-	OpenGLVertexArray::~OpenGLVertexArray() { glDeleteVertexArrays(1, &m_RendererID); }
+	OpenGLVertexArray::OpenGLVertexArray()  { IMPCT_PROFILE_FUNCTION(); glCreateVertexArrays(1, &m_RendererID); }
+	OpenGLVertexArray::~OpenGLVertexArray() { IMPCT_PROFILE_FUNCTION(); glDeleteVertexArrays(1, &m_RendererID); }
 
-	void OpenGLVertexArray::Bind() const   { glBindVertexArray(m_RendererID); }
-	void OpenGLVertexArray::Unbind() const { glBindVertexArray(0); }
+	void OpenGLVertexArray::Bind() const   { IMPCT_PROFILE_FUNCTION(); glBindVertexArray(m_RendererID); }
+	void OpenGLVertexArray::Unbind() const { IMPCT_PROFILE_FUNCTION(); glBindVertexArray(0); }
 
 	void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer> vertexBuffer)
 	{
+		IMPCT_PROFILE_FUNCTION();
+
 		IMPCT_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "VertexBuffer has no layout!")
 
 		glBindVertexArray(m_RendererID);
@@ -63,6 +65,8 @@ namespace impct
 
 	void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer> indexBuffer)
 	{
+		IMPCT_PROFILE_FUNCTION();
+
 		glBindVertexArray(m_RendererID);
 		indexBuffer->Bind();
 

@@ -23,11 +23,7 @@ void Sandbox2D::OnDetach()
 void Sandbox2D::OnUpdate(impct::Timestep ts)
 {
 	IMPCT_PROFILE_FUNCTION();
-
-	{
-		IMPCT_PROFILE_SCOPE("CameraController.OnUpdate");
-		m_CameraController.OnUpdate(ts);
-	}
+	m_CameraController.OnUpdate(ts);
 
 	{
 		IMPCT_PROFILE_SCOPE("Renderer Start");

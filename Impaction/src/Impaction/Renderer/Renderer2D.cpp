@@ -21,6 +21,8 @@ namespace impct
 
 	void Renderer2D::Init()
 	{
+		IMPCT_PROFILE_FUNCTION();
+
 		s_Data = new Renderer2DStorage();
 
 		s_Data->QuadVertexArray = impct::VertexArray::Create();
@@ -55,17 +57,17 @@ namespace impct
 		s_Data->TextureShader->SetInt("u_Texture", 0);
 	}
 
-	void Renderer2D::Shutdown() { delete s_Data; }
+	void Renderer2D::Shutdown() { IMPCT_PROFILE_FUNCTION(); delete s_Data; }
 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
+		IMPCT_PROFILE_FUNCTION();
+
 		s_Data->TextureShader->Bind();
 		s_Data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}
 
-	void Renderer2D::EndScene()
-	{
-	}
+	void Renderer2D::EndScene() { IMPCT_PROFILE_FUNCTION(); }
 
 	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const glm::vec4& color)
 	{
@@ -74,6 +76,8 @@ namespace impct
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color)
 	{
+		IMPCT_PROFILE_FUNCTION();
+
 		s_Data->TextureShader->SetFloat4("u_Color", color);
 		s_Data->WhiteTexture->Bind();
 
@@ -95,6 +99,8 @@ namespace impct
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture)
 	{
+		IMPCT_PROFILE_FUNCTION();
+
 		s_Data->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
 		s_Data->TextureShader->Bind();
 
