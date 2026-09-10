@@ -172,6 +172,12 @@ namespace impct
 		UploadUniformInt(name, value);
 	}
 
+	void OpenGLShader::SetFloat(const std::string& name, const float value)
+	{
+		IMPCT_PROFILE_FUNCTION();
+		UploadUniformFloat(name, value);
+	}
+
 	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value) 
 	{
 		IMPCT_PROFILE_FUNCTION();
