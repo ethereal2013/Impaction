@@ -18,8 +18,8 @@ namespace impct
 
 		static inline void Clear() { return s_RendererAPI->Clear(); }
 
-		static inline void DrawIndexed(const Ref<VertexArray>& vertexArray) 
-		{ return s_RendererAPI->DrawIndexed(vertexArray); }
+		static inline void DrawIndexed(const Ref<VertexArray>& vertexArray, uint32_t indexCount = 0)
+		{ return s_RendererAPI->DrawIndexed(vertexArray, indexCount); }
 
 	private:
 		static RendererAPI* s_RendererAPI;

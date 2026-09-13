@@ -28,6 +28,22 @@ namespace impct
 		return 0;
 	}
 
+	Ref<VertexBuffer> VertexBuffer::Create(uint32_t size)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:
+			IMPCT_CORE_ASSERT(false, "RendererAPI::None is not defined!");
+			return nullptr;
+
+		case RendererAPI::API::OpenGL:
+			return MakeRef<OpenGLVertexBuffer>(size);
+		}
+
+		IMPCT_CORE_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
+	}
+
 	Ref<VertexBuffer> VertexBuffer::Create(const float* vertices, uint32_t size)
 	{
 		switch (Renderer::GetAPI())
