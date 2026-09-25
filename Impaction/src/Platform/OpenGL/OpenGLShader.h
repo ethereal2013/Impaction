@@ -1,4 +1,5 @@
 #pragma once
+#include "Impaction/Core/Core.h"
 
 #include "Impaction/Renderer/Shader.h"
 #include <glm/glm.hpp>

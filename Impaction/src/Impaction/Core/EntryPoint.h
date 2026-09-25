@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef IMPCT_PLATFORM_WINDOWS
+#if defined(IMPCT_PLATFORM_WINDOWS) || defined(IMPCT_PLATFORM_LINUX)
 	
 extern impct::Application* impct::CreateApplication();
 

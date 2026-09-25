@@ -32,7 +32,6 @@
 	#error "Android is not supported!"
 #elif defined(__linux__)
 	#define IMPCT_PLATFORM_LINUX
-	#error "Linux is not supported!"
 #else
 	#error "Unknown platform!"
 
@@ -49,8 +48,27 @@
 		#define IMPCT_API
 	#endif
 
+#elif defined(IMPCT_PLATFORM_LINUX)
+	#if IMPCT_DYNAMIC_LINK
+		#ifdef IMPCT_BUILD_DLL
+			#define IMPCT_API __declspec(dllexport)
+		#else
+			#define IMPCT_API __declspec(dllimport)
+		#endif
+	#else
+		#define IMPCT_API
+	#endif
+
 #else
-	#error Impaction only supports Windows
+	#error Impaction only supports Windows and Linux
+#endif
+
+#if defined(_MSC_VER)
+	#define IMPCT_DEBUGBREAK() __debugbreak()
+#elif defined(__GNUC__) || defined(__clang__)
+	#define IMPCT_DEBUGBREAK() __builtin_trap()
+#else
+	#define IMPCT_DEBUGBREAK() std::abort()
 #endif
 
 #ifdef IMPCT_DEBUG
@@ -58,8 +76,8 @@
 #endif
 
 #ifdef IMPCT_ENABLE_ASSERTS
-	#define IMPCT_ASSERT(x, ...) { if(!(x)) { IMPCT_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }	
-	#define IMPCT_CORE_ASSERT(x, ...) { if(!(x)) { IMPCT_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define IMPCT_ASSERT(x, ...) { if(!(x)) { IMPCT_ERROR("Assertion Failed: {0}", __VA_ARGS__); IMPCT_DEBUGBREAK(); } }	
+	#define IMPCT_CORE_ASSERT(x, ...) { if(!(x)) { IMPCT_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); IMPCT_DEBUGBREAK(); } }
 #else
 	#define IMPCT_ASSERT(x, ...)
 	#define IMPCT_CORE_ASSERT(x, ...)

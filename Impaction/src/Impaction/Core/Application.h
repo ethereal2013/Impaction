@@ -49,6 +49,6 @@ namespace impct
 		static Application* s_Instance;
 	};
 
-	//To be definded in Client.
+	//To be defined in Client.
 	[[nodiscard]] Application* CreateApplication();
 }

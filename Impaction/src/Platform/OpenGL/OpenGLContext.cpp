@@ -10,7 +10,7 @@ namespace impct
 	OpenGLContext::OpenGLContext(GLFWwindow* windowHandle)
 		: m_windowHandle(windowHandle)
 	{
-		IMPCT_CORE_ASSERT(m_windowHandle, "Window Handle is null!")
+		IMPCT_CORE_ASSERT(m_windowHandle, "Window Handle is null!");
 	}
 
 	void OpenGLContext::Init()

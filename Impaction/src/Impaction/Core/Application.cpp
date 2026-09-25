@@ -67,7 +67,7 @@ namespace impct
 		{
 			IMPCT_PROFILE_SCOPE("Run Loop");
 
-			float time = static_cast<float>(glfwGetTime()); // XPlatform::GetTime();
+			const auto time = static_cast<float>(glfwGetTime()); // XPlatform::GetTime();
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 

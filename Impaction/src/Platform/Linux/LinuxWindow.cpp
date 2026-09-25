@@ -1,5 +1,5 @@
 #include "impct_pch.h"
-#include "WindowsWindow.h"
+#include "LinuxWindow.h"
 #include "Impaction/Core/Core.h"
 
 #include "Impaction/Events/KeyEvent.h"
@@ -16,19 +16,19 @@ namespace impct
 		IMPCT_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
-	WindowsWindow::WindowsWindow(const WindowProps& props) 
+	LinuxWindow::LinuxWindow(const WindowProps& props) 
 	{
 		IMPCT_PROFILE_FUNCTION();
-		WindowsWindow::Init(props);
+		LinuxWindow::Init(props);
 	}
 
-	WindowsWindow::~WindowsWindow() 
+	LinuxWindow::~LinuxWindow() 
 	{
 		IMPCT_PROFILE_FUNCTION();
-		WindowsWindow::Shutdown();
+		LinuxWindow::Shutdown();
 	}
 
-	void WindowsWindow::Init(const WindowProps& props)
+	void LinuxWindow::Init(const WindowProps& props)
 	{
 		IMPCT_PROFILE_FUNCTION();
 
@@ -157,13 +157,13 @@ namespace impct
 
 	}
 
-	void WindowsWindow::Shutdown() 
+	void LinuxWindow::Shutdown() 
 	{
 		IMPCT_PROFILE_FUNCTION();
 		glfwDestroyWindow(m_Window);
 	}
 
-	void WindowsWindow::OnUpdate()
+	void LinuxWindow::OnUpdate()
 	{
 		IMPCT_PROFILE_FUNCTION();
 
@@ -171,7 +171,7 @@ namespace impct
 		m_Context->SwapBuffers();
 	}
 
-	void WindowsWindow::SetVSync(bool enabled)
+	void LinuxWindow::SetVSync(bool enabled)
 	{
 		IMPCT_PROFILE_FUNCTION();
 
@@ -180,5 +180,6 @@ namespace impct
 		m_Data.Vsync = enabled;
 	}
 
-	bool WindowsWindow::IsVSync() const { return m_Data.Vsync; }
+	bool LinuxWindow::IsVSync() const { return m_Data.Vsync; }
+
 }

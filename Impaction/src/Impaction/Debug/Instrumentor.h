@@ -129,13 +129,22 @@ namespace impct
 
 #if IMPCT_PROFILE
 
-	#define IMPCT_PROFILE_BEGIN_SESSION(name, filepath) ::impct::Instrumentor::Get().BeginSession(name, filepath)
-	#define IMPCT_PROFILE_END_SESSION() ::impct::Instrumentor::Get().EndSession()
-	#define IMPCT_PROFILE_SCOPE(name) ::impct::InstrumentationTimer timer##__LINE__(name);
-	#define IMPCT_PROFILE_FUNCTION() IMPCT_PROFILE_SCOPE(__FUNCSIG__)
+	#if defined(_MSC_VER)
+		#define IMPCT_FUNCTION_SIGNATURE __FUNCSIG__
+	#elif defined(__GNUC__) || defined(__clang__) 
+		#define IMPCT_FUNCTION_SIGNATURE __PRETTY_FUNCTION__ 
+	#else
+		#define IMPCT_FUNCTION_SIGNATURE __func__ 
+	#endif 
+
+	#define IMPCT_DETAIL_CONCAT(a, b) a##b 
+
+	#define IMPCT_PROFILE_BEGIN_SESSION(name, filepath) ::impct::Instrumentor::Get().BeginSession(name, filepath) 
+	#define IMPCT_PROFILE_END_SESSION()					::impct::Instrumentor::Get().EndSession()
+	#define IMPCT_PROFILE_SCOPE(name)					::impct::InstrumentationTimer IMPCT_DETAIL_CONCAT(impct_profile_timer_, __LINE__)(name)
+	#define IMPCT_PROFILE_FUNCTION()  IMPCT_PROFILE_SCOPE(IMPCT_FUNCTION_SIGNATURE)
 
 #else
-
 	#define IMPCT_PROFILE_BEGIN_SESSION(name, filepath)
 	#define IMPCT_PROFILE_END_SESSION()
 	#define IMPCT_PROFILE_SCOPE(name)
