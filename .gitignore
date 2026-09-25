@@ -1,4 +1,7 @@
 # Directories
+.idea/
+.cache/
+cmake-build-debug/
 .vs/
 bin/
 bin-int/
