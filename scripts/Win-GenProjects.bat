@@ -1,5 +1,5 @@
 @echo off
 pushd ..\
-call vendor\bin\premake\premake5.exe vs2026
+cmake -S . -B build -G "Visual Studio 18 2026"
 popd
 PAUSE
