@@ -38,14 +38,14 @@ The [CMake](CMakeLists.txt), [EntryPoint.h](Impaction/src/Impaction/Core/EntryPo
 ### Cloning
 
 **1. Downloading the Repository:**
-Make sure git is installed. Open command prompt or git bash at the desired directory. If opened at `C:\Users\{Name}` then use `cd "{Desired-Directory}"` to reach there. Clone the repository with
+Make sure git is installed. Open command prompt or git bash at the desired directory. If opened at home or root then `cd` into the desired directory. Finally clone the repository with
 
 `git clone --recursive https://github.com/ethereal2013/Impaction.git`.
 
-If the repository was previously cloned non-recursively, use `git submodule update --init` to clone the necessary submodules.
+If the repository was previously cloned non-recursively(without ` --recursive`), use `git submodule update --init` to clone the necessary submodules.
 
 **2. Regenerating the project:**
-If changes are made, make sure to update and save the [premake](premake5.lua) as necessary and then run the [GenerateProject.bat](scripts/Win-GenProjects.bat) to regenerate and reload the project before compilation.
+If changes are made, make sure to update and save the [premake](premake5.lua) as necessary and then run the project generation file in accordance to your Operating System to regenerate and reload the project before compilation.
 
 ## Inspiration and Acknowledgements
 
