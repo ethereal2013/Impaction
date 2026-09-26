@@ -1,5 +1,0 @@
-@echo off
-pushd ..\
-cmake -S . -B build -G "Visual Studio 18 2026"
-popd
-PAUSE
