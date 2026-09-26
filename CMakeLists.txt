@@ -57,7 +57,10 @@ else()
     add_library(Impaction STATIC ${IMPCT_SOURCES}
             Impaction/src/Platform/Linux/LinuxWindow.cpp
             Impaction/src/Platform/Linux/LinuxWindow.h
-            Impaction/src/Impaction/Core/Window.cpp)
+            Impaction/src/Impaction/Core/Window.cpp
+            Impaction/src/Platform/Linux/LinuxInput.cpp
+            Impaction/src/Platform/Linux/LinuxInput.h
+            Impaction/src/Impaction/Core/Input.cpp)
 endif()
 
 target_include_directories(Impaction PUBLIC

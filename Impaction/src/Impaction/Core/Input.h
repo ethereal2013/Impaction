@@ -7,6 +7,8 @@ namespace impct
 	class Input
 	{
 	public:
+		virtual ~Input() = default;
+
 		static inline bool IsKeyPressed(int keycode) 
 		{ return s_Instance->IsKeyPressedImpl(keycode); }
 
@@ -21,6 +23,8 @@ namespace impct
 
 		static inline std::pair<float, float> GetMousePos() 
 		{ return s_Instance->GetMousePosImpl(); }
+
+		[[nodiscard]] static Input* Create();
 
 	protected:
 		virtual bool IsKeyPressedImpl(int keycode) = 0;

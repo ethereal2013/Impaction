@@ -16,7 +16,7 @@ namespace impct
 #elif defined(IMPCT_PLATFORM_LINUX)
         return MakeScope<LinuxWindow>(props);
 #else
-    #error "Unsupported platform"
+        IMPCT_CORE_ASSERT(false, "Platform not supported")
 #endif
     }
 

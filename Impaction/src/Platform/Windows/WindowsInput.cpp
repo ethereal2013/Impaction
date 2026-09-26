@@ -6,7 +6,7 @@
 
 namespace impct
 {
-	Input* Input::s_Instance = new WindowsInput();
+	Input* Input::s_Instance = Input::Create();
 
 	bool WindowsInput::IsKeyPressedImpl(int keycode)
 	{
