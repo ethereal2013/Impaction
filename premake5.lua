@@ -23,7 +23,7 @@ include "Impaction/vendor/imgui"
 
 require "vstudio"
 
-	local vcxproj = premake.vstudio.vc2010
+local vcxproj = premake.vstudio.vc2010
 
 	local function useBuiltinVcpkgApplocalDeps()
 		premake.w('  <PropertyGroup>')
@@ -38,6 +38,8 @@ require "vstudio"
 	end)
 
 	local ImpctKind = "StaticLib"
+
+startproject "Sandbox"
 
 project "Impaction"
 	location "Impaction"
@@ -113,6 +115,8 @@ project "Impaction"
 	filter "configurations:Dist"
 		defines "IMPCT_DIST"
 		optimize "on"
+
+
 
 project "Sandbox"
 	location "Sandbox"
