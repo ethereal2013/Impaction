@@ -2,6 +2,9 @@
 .idea/
 .cache/
 cmake-build-debug/
+cmake-build-release/
+cmake-build-dist/
+/build/
 .vs/
 bin/
 bin-int/

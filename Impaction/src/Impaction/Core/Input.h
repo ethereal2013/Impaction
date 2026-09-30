@@ -9,7 +9,7 @@ namespace impct
 	public:
 		virtual ~Input() = default;
 
-		static inline bool IsKeyPressed(int keycode) 
+		static inline bool IsKeyPressed(const int keycode)
 		{ return s_Instance->IsKeyPressedImpl(keycode); }
 
 		static inline bool IsMouseButtonPressed(int button) 

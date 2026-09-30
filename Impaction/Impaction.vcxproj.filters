@@ -10,9 +10,6 @@
     <Filter Include="src\Impaction\Core">
       <UniqueIdentifier>{98B2B5B1-8496-7607-EDF6-705AD9F96089}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Impaction\Debug">
-      <UniqueIdentifier>{B66078E8-22C2-55F6-AB2F-9CA817908CB5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Impaction\Events">
       <UniqueIdentifier>{24CA0EFB-1059-98C4-B977-ACBFA5E5A86A}</UniqueIdentifier>
     </Filter>
@@ -24,9 +21,6 @@
     </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Platform\Linux">
-      <UniqueIdentifier>{0052F1F1-EC35-B247-5596-AC9A41999CC9}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\OpenGL">
       <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
@@ -96,9 +90,6 @@
     <ClInclude Include="src\Impaction\Core\Window.h">
       <Filter>src\Impaction\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Impaction\Debug\Instrumentor.h">
-      <Filter>src\Impaction\Debug</Filter>
-    </ClInclude>
     <ClInclude Include="src\Impaction\Events\ApplicationEvent.h">
       <Filter>src\Impaction\Events</Filter>
     </ClInclude>
@@ -146,12 +137,6 @@
     </ClInclude>
     <ClInclude Include="src\Impaction\Renderer\VertexArray.h">
       <Filter>src\Impaction\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Linux\LinuxInput.h">
-      <Filter>src\Platform\Linux</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Linux\LinuxWindow.h">
-      <Filter>src\Platform\Linux</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1440,12 +1425,10 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\Impaction\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Impaction\Core\Application.cpp">
-      <Filter>src\Impaction\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Impaction\Core\Input.cpp">
       <Filter>src\Impaction\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Impaction\Core\Layer.cpp">
@@ -1455,9 +1438,6 @@
       <Filter>src\Impaction\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Impaction\Core\Log.cpp">
-      <Filter>src\Impaction\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Impaction\Core\Window.cpp">
       <Filter>src\Impaction\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Impaction\ImGui\ImGuiBuild.cpp">
@@ -1495,12 +1475,6 @@
     </ClCompile>
     <ClCompile Include="src\Impaction\Renderer\VertexArray.cpp">
       <Filter>src\Impaction\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Platform\Linux\LinuxInput.cpp">
-      <Filter>src\Platform\Linux</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Platform\Linux\LinuxWindow.cpp">
-      <Filter>src\Platform\Linux</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>

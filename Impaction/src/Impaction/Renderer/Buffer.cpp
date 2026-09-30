@@ -7,7 +7,7 @@
 namespace impct
 {
 
-	uint32_t ShaderDataTypeSize(ShaderDataType type)
+	uint32_t ShaderDataTypeSize(const ShaderDataType type)
 	{
 		switch (type)
 		{
@@ -22,6 +22,7 @@ namespace impct
 			case ShaderDataType::Int3:		return 4 * 3;
 			case ShaderDataType::Int4:		return 4 * 4;
 			case ShaderDataType::Bool:		return 1;
+			case ShaderDataType::None:      break;
 		}
 
 		IMPCT_CORE_ASSERT(false, "Unknown ShaderDataType!");

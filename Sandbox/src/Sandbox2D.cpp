@@ -4,8 +4,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <Platform/OpenGL/OpenGLShader.h>
-
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f)
 {
@@ -20,11 +18,12 @@ void Sandbox2D::OnDetach()
 {
 }
 
-void Sandbox2D::OnUpdate(impct::Timestep ts)
+void Sandbox2D::OnUpdate(const impct::Timestep ts)
 {
 	IMPCT_PROFILE_FUNCTION();
 	m_CameraController.OnUpdate(ts);
 
+	impct::Renderer2D::ResetStats();
 	{
 		IMPCT_PROFILE_SCOPE("Renderer Start");
 		impct::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
@@ -39,6 +38,7 @@ void Sandbox2D::OnUpdate(impct::Timestep ts)
 		impct::Renderer2D::BeginScene(m_CameraController.GetCamera());
 		{
 			impct::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, m_SquareColor);
+			impct::Renderer2D::DrawRotatedQuad({ -1.4f, 0.3f }, { 0.8f, 0.8f }, glm::radians(23.0f), { 0.2f, 0.8f, 0.3f, 1.0f });
 			impct::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
 			impct::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_ChessTexture, 10.0f);
 			impct::Renderer2D::DrawRotatedQuad({ 0.7f, 0.8f }, { 0.8f, 0.8f }, glm::radians(rotation), m_ChessTexture, 50.0f);
@@ -56,6 +56,13 @@ void Sandbox2D::OnImGuiRender()
 {
 	ImGui::Begin("Settings");
 	{
+		const auto stats = impct::Renderer2D::GetStats();
+		ImGui::Text("Renderer2D Stats: ");
+		ImGui::Text("DrawCalls: %d", stats.DrawCalls);
+		ImGui::Text("Quads:     %d", stats.QuadCount);
+		ImGui::Text("Vertices:  %d", stats.GetTotalVertexCount());
+		ImGui::Text("Indices:   %d", stats.GetTotalIndexCount());
+
 		ImGui::ColorEdit3("SquareColor", glm::value_ptr(m_SquareColor));
 	}
 	ImGui::End();

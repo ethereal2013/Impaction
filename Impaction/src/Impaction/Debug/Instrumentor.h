@@ -53,7 +53,7 @@ namespace impct
 			if (m_ProfileCount++ > 0) m_OutputStream << ",";
 
 			std::string name = result.Name;
-			std::replace(name.begin(), name.end(), '"', '\'');
+			std::ranges::replace(name, '"', '\'');
 
 			m_OutputStream
 				<< "{\n"
@@ -106,12 +106,12 @@ namespace impct
 
 		inline void Stop()
 		{
-			auto endTimepoint = std::chrono::high_resolution_clock::now();
+			const auto endTimepoint = std::chrono::high_resolution_clock::now();
 
-			int64_t start = std::chrono::time_point_cast<std::chrono::microseconds>(m_StartTimepoint).time_since_epoch().count();
-			int64_t end = std::chrono::time_point_cast<std::chrono::microseconds>(endTimepoint).time_since_epoch().count();
+			const int64_t start = std::chrono::time_point_cast<std::chrono::microseconds>(m_StartTimepoint).time_since_epoch().count();
+			const int64_t end = std::chrono::time_point_cast<std::chrono::microseconds>(endTimepoint).time_since_epoch().count();
 
-			uint64_t threadID = std::hash<std::thread::id>{}(std::this_thread::get_id());
+			const uint64_t threadID = std::hash<std::thread::id>{}(std::this_thread::get_id());
 			Instrumentor::Get().WriteProfile({ m_Name, start, end, threadID });
 
 			m_Stopped = true;
@@ -124,10 +124,9 @@ namespace impct
 	};
 
 }
+#endif
 
-#define IMPCT_PROFILE 1
-
-#if IMPCT_PROFILE
+#if IMPCT_ENABLE_PROFILE
 
 	#if defined(_MSC_VER)
 		#define IMPCT_FUNCTION_SIGNATURE __FUNCSIG__
@@ -143,14 +142,6 @@ namespace impct
 	#define IMPCT_PROFILE_END_SESSION()					::impct::Instrumentor::Get().EndSession()
 	#define IMPCT_PROFILE_SCOPE(name)					::impct::InstrumentationTimer IMPCT_DETAIL_CONCAT(impct_profile_timer_, __LINE__)(name)
 	#define IMPCT_PROFILE_FUNCTION()  IMPCT_PROFILE_SCOPE(IMPCT_FUNCTION_SIGNATURE)
-
-#else
-	#define IMPCT_PROFILE_BEGIN_SESSION(name, filepath)
-	#define IMPCT_PROFILE_END_SESSION()
-	#define IMPCT_PROFILE_SCOPE(name)
-	#define IMPCT_PROFILE_FUNCTION()
-
-#endif
 
 #else
 	#define IMPCT_PROFILE_BEGIN_SESSION(name, filepath)
