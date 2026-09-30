@@ -3,17 +3,19 @@
 #include "Impaction/Core/Input.h"
 #include "OrthographicCameraController.h"
 
+#include <cmath>
+
 namespace impct
 {
 
-	OrthographicCameraController::OrthographicCameraController(float aspectRatio, bool rotation)
+	OrthographicCameraController::OrthographicCameraController(const float aspectRatio, const bool rotation)
 		: m_AspectRatio(aspectRatio),
 		  m_Camera(-m_AspectRatio * m_ZoomLevel, m_AspectRatio* m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel),
 		  m_Rotation(rotation)
 	{
 	}
 
-	void OrthographicCameraController::OnUpdate(Timestep ts)
+	void OrthographicCameraController::OnUpdate(const Timestep ts)
 	{
 		IMPCT_PROFILE_FUNCTION();
 
@@ -27,7 +29,7 @@ namespace impct
 
 		if (m_Rotation)
 		{
-			float cameraRotation = glm::radians(m_CameraRotation);
+			const float cameraRotation = glm::radians(m_CameraRotation);
 
 			cameraMovement = glm::vec2(
 				cameraMovement.x * cos(cameraRotation) - cameraMovement.y * sin(cameraRotation),
@@ -59,9 +61,11 @@ namespace impct
 		dispatcher.Dispatch<WindowResizeEvent> (IMPCT_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
 	}
 
-	bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent& e)
+	bool OrthographicCameraController::OnMouseScrolled(const MouseScrolledEvent& e)
 	{
 		IMPCT_PROFILE_FUNCTION();
+
+		m_ZoomPower = Input::IsKeyPressed(IMPCT_KEY_LEFT_CONTROL)? m_ZoomPower = 2.0f : m_ZoomPower = 0.25f;
 
 		m_ZoomLevel -= e.GetYOffset() * m_ZoomPower;
 		m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
@@ -69,7 +73,7 @@ namespace impct
 		return false;
 	}
 
-	bool OrthographicCameraController::OnWindowResized(WindowResizeEvent& e)
+	bool OrthographicCameraController::OnWindowResized(const WindowResizeEvent& e)
 	{
 		IMPCT_PROFILE_FUNCTION();
 

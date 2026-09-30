@@ -8,15 +8,15 @@ namespace impct
 {
     Input* Input::s_Instance = Input::Create();
 
-    bool LinuxInput::IsKeyPressedImpl(int keycode)
+    bool LinuxInput::IsKeyPressedImpl(const int keycode)
     {
-        auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-        auto state = glfwGetKey(window, keycode);
+        const auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+        const auto state = glfwGetKey(window, keycode);
 
         return state == GLFW_PRESS || state == GLFW_REPEAT;
     }
 
-    bool LinuxInput::IsMouseButtonPressedImpl(int button)
+    bool LinuxInput::IsMouseButtonPressedImpl(const int button)
     {
         auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
         auto state = glfwGetMouseButton(window, button);
@@ -28,7 +28,7 @@ namespace impct
     {
         double xpos, ypos;
 
-        auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+        const auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
         glfwGetCursorPos(window, &xpos, &ypos);
 
         return { static_cast<float>(xpos), static_cast<float>(ypos) };

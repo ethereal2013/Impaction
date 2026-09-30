@@ -15,7 +15,7 @@
 namespace impct
 {
 	ImGuiLayer::ImGuiLayer() : Layer("ImGuiLayer") {}
-	ImGuiLayer::~ImGuiLayer() {}
+	ImGuiLayer::~ImGuiLayer() = default;
 
 
 	void ImGuiLayer::OnAttach()
@@ -41,8 +41,8 @@ namespace impct
 			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 		}
 
-		Application& app = Application::Get();
-		GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
+		const Application& app = Application::Get();
+		auto* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
 
 		ImGui_ImplGlfw_InitForOpenGL(window, true);
 		ImGui_ImplOpenGL3_Init("#version 410");

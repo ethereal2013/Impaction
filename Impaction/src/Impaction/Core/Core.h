@@ -83,6 +83,14 @@
 	#define IMPCT_CORE_ASSERT(x, ...)
 #endif
 
+#ifdef IMPCT_DEBUG
+	#define IMPCT_ENABLE_PROFILE 1
+#else
+	#if IMPCT_ENABLE_PROFILE
+		#error "Profiling only works on Debug."
+	#endif
+#endif
+
 #define BIT(x) (1 << x)
 
 #define IMPCT_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)

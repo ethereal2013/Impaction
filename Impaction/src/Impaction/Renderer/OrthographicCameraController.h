@@ -20,17 +20,17 @@ namespace impct
 		void OnEvent(Event& e);
 
 		inline OrthographicCamera& GetCamera() { return m_Camera; }
-		inline const OrthographicCamera& GetCamera() const { return m_Camera; }
+		[[nodiscard]] inline const OrthographicCamera& GetCamera() const { return m_Camera; }
 
-		inline float GetZoomLevel() const { return m_ZoomLevel; }
-		inline void SetZoomLevel(float zoomLevel) { m_ZoomLevel = zoomLevel; }
+		[[nodiscard]] inline float GetZoomLevel() const { return m_ZoomLevel; }
+		inline void SetZoomLevel(const float zoomLevel) { m_ZoomLevel = zoomLevel; }
 
-		inline float GetZoomPower() const { return m_ZoomPower; }
-		inline void SetZoomPower(float zoomPower) { m_ZoomPower = zoomPower; }
+		[[nodiscard]] inline float GetZoomPower() const { return m_ZoomPower; }
+		inline void SetZoomPower(const float zoomPower) { m_ZoomPower = zoomPower; }
 
 	private:
-		bool OnMouseScrolled(MouseScrolledEvent& e);
-		bool OnWindowResized(WindowResizeEvent& e);
+		bool OnMouseScrolled(const MouseScrolledEvent& e);
+		bool OnWindowResized(const WindowResizeEvent& e);
 
 	private:
 		float m_AspectRatio;

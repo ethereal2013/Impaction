@@ -68,7 +68,7 @@ namespace impct
 			IMPCT_PROFILE_SCOPE("Run Loop");
 
 			const auto time = static_cast<float>(glfwGetTime()); // XPlatform::GetTime();
-			Timestep timestep = time - m_LastFrameTime;
+			const Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
 			if (!m_Minimized)
@@ -95,7 +95,7 @@ namespace impct
 		return true;
 	}
 
-	bool Application::OnWindowResize(WindowResizeEvent& e)
+	bool Application::OnWindowResize(const WindowResizeEvent& e)
 	{
 		IMPCT_PROFILE_FUNCTION();
 

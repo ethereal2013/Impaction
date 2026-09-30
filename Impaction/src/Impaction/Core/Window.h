@@ -14,9 +14,9 @@ namespace impct
 		unsigned int Width;
 		unsigned int Height;
 
-		WindowProps(std::string  title = "Impaction Engine",
-			unsigned int width = 1280,
-			unsigned int height = 720)
+		explicit WindowProps(std::string  title = "Impaction Engine",
+		                     unsigned int width = 1280,
+		                     unsigned int height = 720)
 
 			: Title(std::move(title)), Width(width), Height(height) {
 		}

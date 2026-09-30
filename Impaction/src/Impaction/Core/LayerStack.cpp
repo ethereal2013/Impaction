@@ -3,8 +3,8 @@
 
 namespace impct
 {
-	LayerStack::LayerStack() { }
-	LayerStack::~LayerStack() { for (Layer* layer : m_Layers) delete layer; }
+	LayerStack::LayerStack() = default;
+	LayerStack::~LayerStack() { for (const Layer* layer : m_Layers) delete layer; }
 
 	void LayerStack::PushLayer(Layer* layer)
 	{

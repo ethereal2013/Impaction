@@ -22,13 +22,13 @@ namespace impct
 		IMPCT_PROFILE_FUNCTION();
 	}
 
-	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
+	void Renderer::OnWindowResize(const uint32_t width, const uint32_t height)
 	{
 		//Temporary (Until Framebuffers).
 		RenderCommand::SetViewport(0, 0, width, height);
 	}
 
-	void Renderer::BeginScene(OrthographicCamera& camera)
+	void Renderer::BeginScene(const OrthographicCamera& camera)
 	{
 		m_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
 	}
@@ -40,7 +40,7 @@ namespace impct
 	void Renderer::Submit(
 		const Ref<Shader>& shader,
 		const Ref<VertexArray>& vertexArray,
-		const glm::mat4 transform
+		const glm::mat4& transform
 		)
 	{
 		shader->Bind();

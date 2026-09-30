@@ -29,11 +29,11 @@ namespace impct
 		void PushOverlay(Layer* overlay);
 
 		static inline Application& Get() { return *s_Instance; }
-		inline Window& GetWindow() { return *m_Window; }
+		[[nodiscard]] inline Window& GetWindow() const { return *m_Window; }
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
-		bool OnWindowResize(WindowResizeEvent& e);
+		bool OnWindowResize(const WindowResizeEvent& e);
 
 	private:
 		std::unique_ptr<Window> m_Window;
