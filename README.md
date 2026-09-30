@@ -65,7 +65,7 @@ Impaction is under active, incremental development. Interfaces, subsystems, and 
 Impaction pulls in dependencies as git submodules, so clone recursively:
 
 ```bash
-git clone --recursive https://github.com/ethereal2013/Impaction.git
+git clone --recursive https://github.com/staticinl/Impaction.git
 ```
 
 If you already cloned without `--recursive`, fetch the submodules with:
